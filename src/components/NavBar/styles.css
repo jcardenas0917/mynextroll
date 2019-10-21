@@ -1,0 +1,30 @@
+.navbar {
+  background-image: linear-gradient(
+    to right,
+    black,
+    black,
+    black,
+    black,
+    black,
+    rgba(245, 241, 241, 0.582),
+    red
+  );
+}
+.navbar-custom .navbar-brand {
+  color: white;
+  padding: 0.8rem 1rem;
+}
+.navbar-custom .navbar-nav .nav-link {
+  color: white;
+  padding: 1rem 1rem;
+}
+.navbar-custom .nav-item:hover .nav-link {
+  color: red;
+  transform: scale(1.2);
+}
+.roll {
+  color: white;
+}
+.roll:hover {
+  color: red;
+}
