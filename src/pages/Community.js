@@ -1,7 +1,7 @@
 import React from "react";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-function Community() {
+export function Community() {
     return (
         <div className="container">
             <p>Community</p>
@@ -9,5 +9,3 @@ function Community() {
 
     );
 }
-
-export default Community;

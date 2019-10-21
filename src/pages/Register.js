@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/register.css";
 
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-function Register() {
+export function Register() {
     return (
         <div className="container">
             <div className="row main">
@@ -71,5 +71,3 @@ function Register() {
 
     );
 }
-
-export default Register;
