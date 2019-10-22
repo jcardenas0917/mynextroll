@@ -1,27 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 // Depending on the current path, this component sets the "active" className on the appropriate navigation link item
-export function Navbar() {
+function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
-            <a className="nav-link" href="/home"><h2 className="roll">My Next Roll</h2></a>
+            <Link className="nav-link" to="/home"><h2 className="roll">My Next Roll</h2></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="/home">Home <span className="sr-only">(current)</span></a>
+                        <Link className="nav-link" to="/home">Home <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/profile">Profile</a>
+                        <Link className="nav-link" to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/journal">Journal</a>
+                        <Link className="nav-link" to="/journal">Journal</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/community">Community</a>
+                        <Link className="nav-link" to="/community">Community</Link>
                     </li>
                 </ul>
             </div>
@@ -29,3 +30,4 @@ export function Navbar() {
     );
 };
 
+export default Navbar;

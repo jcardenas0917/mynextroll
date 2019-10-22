@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/login.css";
 // Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-export function Login() {
+function Login() {
     return (
         <div className="container">
             <div className="row main">
@@ -40,4 +40,4 @@ export function Login() {
 
     );
 };
-
+export default Login;
