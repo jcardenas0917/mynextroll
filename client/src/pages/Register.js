@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateProfileTemplate from '../components/CreateProfileTemplate'
+import CreateProfileForm from '../components/CreateProfileForm'
 
 class CreateProfile extends Component {
     state = {
@@ -10,7 +10,7 @@ class CreateProfile extends Component {
     render() {
         return (
             <div>
-                <CreateProfileTemplate />
+                <CreateProfileForm />
             </div>
         )
     }

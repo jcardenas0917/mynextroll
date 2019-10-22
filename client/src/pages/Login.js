@@ -28,10 +28,10 @@ function Login() {
                             </div>
                         </div>
                         <div className="form-group ">
-                            <a href="/" target="_blank" rel="noopener noreferrer" type="button" id="button" className="btn btn-primary btn-lg btn-block login-button">Log In</a>
+                            <a href="/" rel="noopener noreferrer" type="button" id="button" className="btn btn-primary btn-lg btn-block login-button">Log In</a>
                         </div>
                         <div className="form-group ">
-                            <a href="/register"><p>Don't have an account yet? click here to register</p></a>
+                            <a href="/register" id="register"><p>Don't have an account yet? click here to register</p></a>
                         </div>
                     </form>
                 </div>
