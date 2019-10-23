@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const profileSchema = new Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    usermanme: { type: String, required: true },
-    password: { type: String, required: true },
-    belt: { type: String, required: true },
-    stripes: { type: Number, required: true },
-    academy: { type: String, required: true },
-    city: { type: String, required: true },
-    profession: { type: String, required: true },
-    sub: { type: String, required: true },
-    instructor: { type: String, required: true },
+    name: { type: String },
+    email: { type: String },
+    username: { type: String },
+    password: { type: String },
+    belt: { type: String },
+    stripes: { type: Number },
+    academy: { type: String },
+    city: { type: String },
+    profession: { type: String },
+    sub: { type: String },
+    instructor: { type: String },
     image: { type: String, required: false },
 });
 

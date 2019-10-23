@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
-import { Input, Select, FormBtn, } from '../components/CreateProfileForm'
+import API from "../utils/API";
+import { Input, FormBtn, } from '../components/CreateProfileForm'
+import Title from '../components/Title';
 
 class CreateProfile extends Component {
     state = {
@@ -9,7 +11,7 @@ class CreateProfile extends Component {
         userName: "",
         password: "",
         belt: "",
-        stripes: 0,
+        stripes: "",
         academy: "",
         city: "",
         profession: "",
@@ -17,7 +19,6 @@ class CreateProfile extends Component {
         instructor: "",
         image: ""
     }
-    componentDidMount() { }
 
     componentDidMount() {
 
@@ -28,19 +29,49 @@ class CreateProfile extends Component {
             [name]: value
         });
     }
-    handleOnSubmit = () => {
-
+    handleFormSubmit = event => {
+        event.preventDefault();
+        API.saveProfile({
+            name: this.state.name,
+            email: this.state.email,
+            username: this.state.userName,
+            password: this.state.password,
+            belt: this.state.belt,
+            stripes: this.state.stripes,
+            academy: this.state.academy,
+            city: this.state.city,
+            profession: this.state.profession,
+            sub: this.state.sub,
+            instructor: this.state.instructor,
+            image: this.state.image
+        })
+            .then(res => this.getProfile())
+            .catch(err => console.log(err))
+        this.setState({
+            name: "",
+            email: "",
+            userName: "",
+            password: "",
+            belt: "",
+            stripes: "",
+            academy: "",
+            city: "",
+            profession: "",
+            sub: "",
+            instructor: "",
+            image: ""
+        });
     }
 
     render() {
         return (
             <div>
-                <from>
+                <Title>Create Your Account and Profile</Title>
+                <form>
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-4">
                             <Jumbotron>
-                                Create your Account and Profile <br />
                                 Name
                                 <Input
                                     value={this.state.name}
@@ -52,6 +83,7 @@ class CreateProfile extends Component {
                                     value={this.state.email}
                                     onChange={this.handleInputChange}
                                     name="email"
+                                    type="email"
                                     placeholder="Enter your e-mail (required)" />
                                 Username
                                 <Input
@@ -64,22 +96,21 @@ class CreateProfile extends Component {
                                     value={this.state.password}
                                     onChange={this.handleInputChange}
                                     name="password"
+                                    type="password"
                                     placeholder="Create a Password (required)" />
                                 Belt rank
                                 <Input
                                     value={this.state.belt}
                                     onChange={this.handleInputChange}
                                     name="belt"
-                                    placeholder="What's your current Belt (required)" />
+                                    placeholder="Type Belt Rank (required)" />
                                 Stripes
-                                <Select
+                                <Input
                                     value={this.state.stripes}
                                     onChange={this.handleInputChange}
                                     name="stripes"
-                                />
+                                    placeholder="Number of Stripes (required numbers only)" />
                             </Jumbotron>
-
-
                         </div>
                         <div className="col-4">
                             <Jumbotron>
@@ -105,7 +136,7 @@ class CreateProfile extends Component {
                                 <Input
                                     value={this.state.sub}
                                     onChange={this.handleInputChange}
-                                    name="submission"
+                                    name="sub"
                                     placeholder="Favorite Submission (required)" />
                                 Profession
                                 <Input
@@ -124,7 +155,7 @@ class CreateProfile extends Component {
                             </Jumbotron>
                         </div>
                     </div>
-                </from>
+                </form>
             </div>
         )
     }

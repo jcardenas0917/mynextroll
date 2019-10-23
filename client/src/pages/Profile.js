@@ -1,33 +1,23 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import Navbar from '../components/NavBar'
+import API from "../utils/API";
 import ProfileTemplate from '../components/ProfileTemplate'
 
 class Profile extends Component {
     state = {
-        name: "",
-        email: "",
-        userName: "",
-        password: "",
-        belt: "",
-        stripes: 0,
-        academy: "",
-        city: "",
-        profession: "",
-        sub: "",
-        instructor: "",
-        image: ""
+        profile: {}
     }
     componentDidMount() {
-
+        this.loadProfile();
+    };
+    loadProfile = () => {
+        API.getProfiles()
+            .then(res =>
+                this.setState({ profile: res.data }),
+                console.log(this.state.profile)
+            )
+            .catch(err => console.log(err));
     }
-    handleInputChange = event => {
-
-    }
-    handleOnSubmit = () => {
-
-    }
-
     render() {
         return (
             <div>
