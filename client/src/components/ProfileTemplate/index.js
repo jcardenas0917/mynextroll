@@ -8,7 +8,7 @@ function ProfileTemplate(props) {
                 <div className="row">
                     <div className="col-md-4">
                         <div className="profile-img">
-                            <img src="https://scontent.ftpa1-1.fna.fbcdn.net/v/t1.0-9/38446645_2136437323065258_2053208488787574784_n.jpg?_nc_cat=111&_nc_oc=AQlXFfs4S2WvBaKeQTYngzAkQ_sL6Fbxvri_mjv-3Cm-KUzGqjWgw1kZiK2pGz3eJQQ&_nc_ht=scontent.ftpa1-1.fna&oh=06b53a72c6563315e860bfcbbb41cab6&oe=5E1E0CCB" alt="" />
+                            <img src={props.image} alt="" />
                             <div className="file btn btn-lg btn-primary">
                                 Change Photo
                       <input type="file" name="file" />
@@ -18,12 +18,12 @@ function ProfileTemplate(props) {
                     <div className="col-md-6">
                         <div className="profile-head">
                             <h5 className="name">
-                                Jaime Cardenas
-                          </h5>
+                                {props.name}
+                            </h5>
                             <h6 className="beltRank">
-                                Brown Belt
-                          </h6>
-                            <p className="proile-rating">Stripes : <span className="stripeCount">1</span></p>
+                                {props.belt}
+                            </h6>
+                            <p className="proile-rating">Stripes : <span className="stripeCount">{props.stripes}</span></p>
                             <ul className="nav nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item">
                                     <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -40,7 +40,7 @@ function ProfileTemplate(props) {
                         <div className="profile-work">
 
                             <p>Favorite Submission</p>
-                            <p>Chokes</p>
+                            <p>{props.sub}</p>
                         </div>
                     </div>
                     <div className="col-md-8">
@@ -51,7 +51,7 @@ function ProfileTemplate(props) {
                                         <label>User Id</label>
                                     </div>
                                     <div className="col-md-6 userName">
-                                        <p>jcardenas17</p>
+                                        <p>{props.username}</p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -59,7 +59,7 @@ function ProfileTemplate(props) {
                                         <label>Academy Name</label>
                                     </div>
                                     <div className="col-md-6 academyName">
-                                        <p>ATT Orlando</p>
+                                        <p>{props.academy}</p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -67,7 +67,7 @@ function ProfileTemplate(props) {
                                         <label>Head Instructor</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <p>Paul Rodriguez</p>
+                                        <p>{props.instructor}</p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -75,7 +75,7 @@ function ProfileTemplate(props) {
                                         <label>City</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <p>Orlando</p>
+                                        <p>{props.city}</p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -83,7 +83,7 @@ function ProfileTemplate(props) {
                                         <label>Profession</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <p>Web Developer</p>
+                                        <p>{props.profession}</p>
                                     </div>
                                 </div>
                             </div>
