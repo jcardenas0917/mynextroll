@@ -29,8 +29,14 @@
   "homepage": "https://github.com/jcardenas0917/mynextroll#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "bcrypt": "^3.0.6",
+    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "if-env": "^1.0.4",
-    "mongoose": "^5.7.6"
+    "mongoose": "^5.7.6",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }

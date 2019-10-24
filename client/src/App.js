@@ -7,6 +7,7 @@ import Community from "./pages/Community";
 import Register from './pages/Register';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
+import NavBar from './components/NavBar'
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/Home" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/journal" component={Journal} />

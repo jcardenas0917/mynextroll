@@ -3,6 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Input, FormBtn, } from '../components/CreateProfileForm'
 import Title from '../components/Title';
+import RegBackground from '../components/RegBackground';
 
 class CreateProfile extends Component {
     state = {
@@ -66,96 +67,94 @@ class CreateProfile extends Component {
     render() {
         return (
             <div>
-                <Title>Create Your Account and Profile</Title>
-                <form>
-                    <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-4">
-                            <Jumbotron>
-                                Name
+                <RegBackground>
+                    <Title>Create Your Account and Profile</Title>
+                    <form>
+                        <div className="row">
+                            <div className="col-2"></div>
+                            <div className="col-8">
+                                <Jumbotron>
+                                    Name
                                 <Input
-                                    value={this.state.name}
-                                    onChange={this.handleInputChange}
-                                    name="name"
-                                    placeholder="Name (required)" />
-                                E-Mail
+                                        value={this.state.name}
+                                        onChange={this.handleInputChange}
+                                        name="name"
+                                        placeholder="Name (required)" />
+                                    E-Mail
                                 <Input
-                                    value={this.state.email}
-                                    onChange={this.handleInputChange}
-                                    name="email"
-                                    type="email"
-                                    placeholder="Enter your e-mail (required)" />
-                                Username
+                                        value={this.state.email}
+                                        onChange={this.handleInputChange}
+                                        name="email"
+                                        type="email"
+                                        placeholder="Enter your e-mail (required)" />
+                                    Username
                                 <Input
-                                    value={this.state.userName}
-                                    onChange={this.handleInputChange}
-                                    name="userName"
-                                    placeholder="Create a Username (required)" />
-                                Password
+                                        value={this.state.userName}
+                                        onChange={this.handleInputChange}
+                                        name="userName"
+                                        placeholder="Create a Username (required)" />
+                                    Password
                                 <Input
-                                    value={this.state.password}
-                                    onChange={this.handleInputChange}
-                                    name="password"
-                                    type="password"
-                                    placeholder="Create a Password (required)" />
-                                Belt rank
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                        name="password"
+                                        type="password"
+                                        placeholder="Create a Password (required)" />
+                                    Belt rank
                                 <Input
-                                    value={this.state.belt}
-                                    onChange={this.handleInputChange}
-                                    name="belt"
-                                    placeholder="Type Belt Rank (required)" />
-                                Stripes
+                                        value={this.state.belt}
+                                        onChange={this.handleInputChange}
+                                        name="belt"
+                                        placeholder="Type Belt Rank (required)" />
+                                    Stripes
                                 <Input
-                                    value={this.state.stripes}
-                                    onChange={this.handleInputChange}
-                                    name="stripes"
-                                    placeholder="Number of Stripes (required numbers only)" />
-                            </Jumbotron>
+                                        value={this.state.stripes}
+                                        onChange={this.handleInputChange}
+                                        name="stripes"
+                                        placeholder="Number of Stripes (required numbers only)" />
+                                    Academy
+                                <Input
+                                        value={this.state.academy}
+                                        onChange={this.handleInputChange}
+                                        name="academy"
+                                        placeholder="Name of Academy (required)" />
+                                    City
+                                <Input
+                                        value={this.state.city}
+                                        onChange={this.handleInputChange}
+                                        name="city"
+                                        placeholder="Where do you train (required)" />
+                                    Instructor
+                                <Input
+                                        value={this.state.instructor}
+                                        onChange={this.handleInputChange}
+                                        name="instructor"
+                                        placeholder="Who is your instructor(required)" />
+                                    Favorite Submission
+                                <Input
+                                        value={this.state.sub}
+                                        onChange={this.handleInputChange}
+                                        name="sub"
+                                        placeholder="Favorite Submission (required)" />
+                                    Profession
+                                <Input
+                                        value={this.state.profession}
+                                        onChange={this.handleInputChange}
+                                        name="profession"
+                                        placeholder="What do you do (required)" />
+                                    Image Link
+                                <Input
+                                        value={this.state.image}
+                                        onChange={this.handleInputChange}
+                                        name="image"
+                                        placeholder="Copy and Paste Image link" />
+                                    <FormBtn
+                                        onClick={this.handleFormSubmit} />
+                                </Jumbotron>
+                            </div>
                         </div>
-                        <div className="col-4">
-                            <Jumbotron>
-                                Academy
-                                <Input
-                                    value={this.state.academy}
-                                    onChange={this.handleInputChange}
-                                    name="academy"
-                                    placeholder="Name of Academy (required)" />
-                                City
-                                <Input
-                                    value={this.state.city}
-                                    onChange={this.handleInputChange}
-                                    name="city"
-                                    placeholder="Where do you train (required)" />
-                                Instructor
-                                <Input
-                                    value={this.state.instructor}
-                                    onChange={this.handleInputChange}
-                                    name="instructor"
-                                    placeholder="Who is your instructor(required)" />
-                                Favorite Submission
-                                <Input
-                                    value={this.state.sub}
-                                    onChange={this.handleInputChange}
-                                    name="sub"
-                                    placeholder="Favorite Submission (required)" />
-                                Profession
-                                <Input
-                                    value={this.state.profession}
-                                    onChange={this.handleInputChange}
-                                    name="profession"
-                                    placeholder="What do you do (required)" />
-                                Image Link
-                                <Input
-                                    value={this.state.image}
-                                    onChange={this.handleInputChange}
-                                    name="image"
-                                    placeholder="Copy and Paste Image link" />
-                                <FormBtn
-                                    onClick={this.handleFormSubmit} />
-                            </Jumbotron>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </RegBackground>
             </div>
         )
     }

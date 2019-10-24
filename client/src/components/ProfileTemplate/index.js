@@ -21,7 +21,7 @@ function ProfileTemplate(props) {
                                 {props.name}
                             </h5>
                             <h6 className="beltRank">
-                                {props.belt}
+                                {props.belt} belt
                             </h6>
                             <p className="proile-rating">Stripes : <span className="stripeCount">{props.stripes}</span></p>
                             <ul className="nav nav-tabs" id="myTab" role="tablist">

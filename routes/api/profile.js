@@ -1,8 +1,10 @@
+const { ensureAuthenticated } = require("../../config/auth");
 const router = require("express").Router();
 const userController = require("../../controller/userController");
+var path = require("path");
 
 // Matches with "/api/profile"
-router.route("/")
+router.route("/", ensureAuthenticated)
     .get(userController.findAll)
     .post(userController.create);
 
