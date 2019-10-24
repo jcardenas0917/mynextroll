@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 
 // Matches with "/api/profile"
-router.route("/", ensureAuthenticated)
+router.route("/")
     .get(userController.findAll)
     .post(userController.create);
 

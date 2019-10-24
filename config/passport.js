@@ -13,7 +13,7 @@ module.exports = (passport, user) => {
             passReqToCallback: true
         }, (req, username, password, done) => {
             // Match User
-            db.profile.findOne({
+            db.Profile.findOne({
                 where: {
                     userName: username
                 }
@@ -42,7 +42,7 @@ module.exports = (passport, user) => {
     });
 
     passport.deserializeUser(function (id, done) {
-        db.profile.findByPk(id).then(function (user) {
+        db.Profile.findByPk(id).then(function (user) {
             if (user) {
                 done(null, user.get());
             }
