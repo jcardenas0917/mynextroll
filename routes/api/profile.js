@@ -1,7 +1,8 @@
 const { ensureAuthenticated } = require("../../config/auth");
 const router = require("express").Router();
 const userController = require("../../controller/userController");
-var path = require("path");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
 
 // Matches with "/api/profile"
 router.route("/", ensureAuthenticated)

@@ -4,49 +4,51 @@ const bcrypt = require("bcrypt");
 
 // Load User
 const db = require("../models");
-passport.use(
-    new LocalStrategy({
-        username: "username",
-        password: "password",
-        passReqToCallback: true
-    }, (username, password, done) => {
-        // Match User
-        db.profile.findOne({
-            where: {
-                username: username
-            }
-        })
-            .then(user => {
-                // Match User
-                if (!user) {
-                    return done(null, false, { message: "That username does not exist." });
+module.exports = (passport, user) => {
+    let User = user;
+    passport.use(
+        new LocalStrategy({
+            usernameField: "username",
+            passwordField: "password",
+            passReqToCallback: true
+        }, (req, username, password, done) => {
+            // Match User
+            db.profile.findOne({
+                where: {
+                    userName: username
                 }
-
-                // Match Password
-                bcrypt.compare(password, user.password, (err, isMatch) => {
-                    if (err) throw err;
-                    if (isMatch) {
-                        return done(null, user)
-                    } else {
-                        return done(null, false, { message: "Password is incorrect." });
-                    }
-                });
             })
-            .catch(err => console.log(err));
-    })
-);
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
+                .then(user => {
+                    // Match User
+                    if (!user) {
+                        return done(null, false, { message: "That username does not exist." });
+                    }
 
-passport.deserializeUser(function (id, done) {
-    db.profile.findByPk(id).then(function (user) {
-        if (user) {
-            done(null, user.get());
-        }
-        else {
-            done(user.errors, null);
-        }
+                    // Match Password
+                    bcrypt.compare(password, user.password, (err, isMatch) => {
+                        if (err) throw err;
+                        if (isMatch) {
+                            return done(null, user)
+                        } else {
+                            return done(null, false, { message: "Password is incorrect." });
+                        }
+                    });
+                })
+                .catch(err => console.log(err));
+        })
+    );
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
     });
-});
-module.exports = passport;
+
+    passport.deserializeUser(function (id, done) {
+        db.profile.findByPk(id).then(function (user) {
+            if (user) {
+                done(null, user.get());
+            }
+            else {
+                done(user.errors, null);
+            }
+        });
+    });
+};
