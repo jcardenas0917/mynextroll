@@ -1,45 +1,59 @@
-import React from "react";
-import "../styles/login.css";
+import React, { Component } from "react";
+import Jumbotron from "../components/Jumbotron";
+import { Input, FormBtn, } from '../components/CreateProfileForm'
+import Title from '../components/Title';
 import RegBackground from '../components/RegBackground';
-// Depending on the current path, this component sets the "active" classNameName on the appropriate navigation link item
-function Login() {
-    return (
-        <RegBackground>
-            <div className="container">
-                <div className="row main">
-                    <div className="main-login main-center">
-                        <h5>Log in to your account.</h5>
-                        <form className="" method="post" action="#">
-                            <div className="form-group">
-                                <label for="username" className="cols-sm-2 control-label">Username</label>
-                                <div className="cols-sm-10">
-                                    <div className="input-group">
-                                        <span className="input-group-addon"><i className="fa fa-users fa" aria-hidden="true"></i></span>
-                                        <input type="text" className="form-control" name="username" id="username" placeholder="Enter your Username" />
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className="form-group">
-                                <label for="password" className="cols-sm-2 control-label">Password</label>
-                                <div className="cols-sm-10">
-                                    <div className="input-group">
-                                        <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" className="form-control" name="password" id="password" placeholder="Enter your Password" />
-                                    </div>
-                                </div>
+class Login extends Component {
+
+    state = {
+        username: '',
+        password: ''
+
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+    handleFormSubmit = event => {
+        event.preventDefault();
+    }
+    render() {
+        return (
+            <div>
+                <RegBackground>
+                    <Title>Log into your account</Title>
+                    <form>
+                        <div className="row">
+                            <div className="col-4"></div>
+                            <div className="col-4">
+                                <Jumbotron>
+                                    Username
+                            <Input
+                                        value={this.state.userName}
+                                        onChange={this.handleInputChange}
+                                        name="userName"
+                                        placeholder="Username" />
+                                    Password
+                            <Input
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                        name="password"
+                                        type="password"
+                                        placeholder="Password" />
+
+                                    <FormBtn
+                                        onClick={this.handleFormSubmit} />
+                                </Jumbotron>
                             </div>
-                            <div className="form-group ">
-                                <a href="/" rel="noopener noreferrer" type="button" id="button" className="btn btn-primary btn-lg btn-block login-button">Log In</a>
-                            </div>
-                            <div className="form-group ">
-                                <a href="/register" id="register"><p>Don't have an account yet? click here to register</p></a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                        </div>
+                    </form>
+                </RegBackground>
             </div>
-        </RegBackground>
-    );
-};
-export default Login;
+        )
+    }
+}
+export default Login

@@ -20,10 +20,6 @@ class CreateProfile extends Component {
         instructor: "",
         image: ""
     }
-
-    componentDidMount() {
-
-    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({

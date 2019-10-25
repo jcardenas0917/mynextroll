@@ -7,7 +7,6 @@ import Community from "./pages/Community";
 import Register from './pages/Register';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-import NavBar from './components/NavBar'
 
 function App() {
   return (
