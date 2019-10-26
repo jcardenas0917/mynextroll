@@ -14,6 +14,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+// Add routes, both API and view
+app.use(routes);
 
 app.use(morgan("dev"));
 app.use(express.static(join(__dirname, "build")));
@@ -22,7 +24,7 @@ app.use((_, res) => {
     res.sendFile(join(__dirname, "build", "index.html"));
 });
 // Add routes, both API and view
-app.use(routes);
+// app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mynextroll", { useNewUrlParser: true });
