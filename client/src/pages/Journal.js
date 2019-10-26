@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from '../components/NavBar'
 
 class Journal extends Component {
     state = {
@@ -9,7 +8,7 @@ class Journal extends Component {
 
     render() {
         return (
-            <Navbar />
+            <h1>Journal</h1>
         )
     }
 }

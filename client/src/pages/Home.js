@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import Navbar from '../components/NavBar';
 import Background from '../components/Background';
 
 class Home extends Component {
-    state = {
+  state = {
 
-    }
-    componentDidMount() { }
+  }
+  componentDidMount() { }
 
-    render() {
-        return (
-            <div>
-                <Navbar />
-                <Background />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Background />
+      </div>
+    )
+  }
 }
 
 export default Home;

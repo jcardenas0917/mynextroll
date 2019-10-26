@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from '../components/NavBar'
+
 
 class Community extends Component {
     state = {
@@ -9,7 +9,7 @@ class Community extends Component {
 
     render() {
         return (
-            <Navbar />
+            <h1>Community</h1>
         )
     }
 }

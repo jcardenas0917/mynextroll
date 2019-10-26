@@ -1,41 +1,37 @@
-import React, { Component } from "react";
-import Navbar from '../components/NavBar'
-import API from "../utils/API";
-import ProfileTemplate from '../components/ProfileTemplate'
+import React from "react";
+import { Container, Row, Col } from "reactstrap";
 
-class Profile extends Component {
-    state = {
-        profile: {}
-    }
-    componentDidMount() {
-        this.loadProfile();
-        console.log(this.state.profile)
-    };
-    loadProfile = () => {
-        API.getProfiles()
-            .then(res =>
-                this.setState({ profile: res.data[0] }))
-            .catch(err => console.log(err));
-    }
-    render() {
-        return (
-            <div>
-                <Navbar />
-                <ProfileTemplate
-                    name={this.state.profile.name}
-                    email={this.state.profile.email}
-                    username={this.state.profile.username}
-                    belt={this.state.profile.belt}
-                    stripes={this.state.profile.stripes}
-                    academy={this.state.profile.academy}
-                    city={this.state.profile.city}
-                    profession={this.state.profile.profession}
-                    sub={this.state.profile.sub}
-                    instructor={this.state.profile.instructor}
-                    image={this.state.profile.image} />
-            </div>
-        )
-    }
-}
+import Highlight from "../components/Highlight";
+import Loading from "../components/Loading";
+import { useAuth0 } from "../react-auth0-spa";
+
+const Profile = () => {
+  const { loading, user } = useAuth0();
+
+  if (loading || !user) {
+    return <Loading />;
+  }
+
+  return (
+    <Container className="mb-5">
+      <Row className="align-items-center profile-header mb-5 text-center text-md-left">
+        <Col md={2}>
+          <img
+            src={user.picture}
+            alt="Profile"
+            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+          />
+        </Col>
+        <Col md>
+          <h2>{user.name}</h2>
+          <p className="lead text-muted">{user.email}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
+      </Row>
+    </Container>
+  );
+};
 
 export default Profile;

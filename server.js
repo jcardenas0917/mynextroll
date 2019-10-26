@@ -1,12 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-
-
 const app = express();
+const { join } = require("path");
+const morgan = require("morgan");
 const PORT = process.env.PORT || 3001;
-
-// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -15,6 +13,14 @@ app.use(express.static("public"));
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
+
+
+app.use(morgan("dev"));
+app.use(express.static(join(__dirname, "build")));
+
+app.use((_, res) => {
+    res.sendFile(join(__dirname, "build", "index.html"));
+});
 // Add routes, both API and view
 app.use(routes);
 
