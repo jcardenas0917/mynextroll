@@ -23,8 +23,7 @@ app.use(express.static(join(__dirname, "build")));
 app.use((_, res) => {
     res.sendFile(join(__dirname, "build", "index.html"));
 });
-// Add routes, both API and view
-// app.use(routes);
+require('./routes/routes');
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mynextroll", { useNewUrlParser: true });
