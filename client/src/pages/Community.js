@@ -9,7 +9,7 @@ class Community extends Component {
 
     render() {
         return (
-            <h1>Community</h1>
+            <h1>Under Construction</h1>
         )
     }
 }

@@ -20,6 +20,7 @@ import "./App.css";
 
 // fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
+import CreateProfile from "./components/CreateProfile";
 initFontAwesome();
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/journal" component={Journal} />
             <PrivateRoute exact path="/community" component={Community} />
+            <PrivateRoute exact path="/create" component={CreateProfile} />
             <PrivateRoute component={NoMatch} />
           </Switch>
         </Container>

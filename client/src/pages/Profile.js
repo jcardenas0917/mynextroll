@@ -27,8 +27,6 @@ class Profile extends Component {
       <div>
         <ProfileTemplate
           name={this.state.profile.name}
-          email={this.state.profile.email}
-          username={this.state.profile.username}
           belt={this.state.profile.belt}
           stripes={this.state.profile.stripes}
           academy={this.state.profile.academy}

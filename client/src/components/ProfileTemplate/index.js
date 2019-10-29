@@ -15,7 +15,7 @@ function ProfileTemplate(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                         <div className="profile-head">
                             <h5 className="name">
                                 {props.name}
@@ -34,6 +34,9 @@ function ProfileTemplate(props) {
                     <div className="col-md-2">
                         <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
                     </div>
+                    <div className="col-md-2">
+                        <input type="button" className="profile-create-btn" name="btnCreate" value="Create Profile" />
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-4">
@@ -46,14 +49,6 @@ function ProfileTemplate(props) {
                     <div className="col-md-8">
                         <div className="tab-content profile-tab" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div className="col-md-6 userName">
-                                        <p>{props.username}</p>
-                                    </div>
-                                </div>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label>Academy Name</label>
