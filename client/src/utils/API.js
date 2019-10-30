@@ -5,15 +5,17 @@ export default {
     getProfiles: function () {
         return axios.get("/api/profile")
     },
-    // Gets the book with the given id
-    getProfile: function (id) {
-        return axios.get("/api/profile/" + id);
+    // Gets the profile with the given email
+    getProfile: function (email) {
+        let test = "hello"
+        console.log(test);
+        return axios.get("/api/profile/email/" + email);
     },
-    // Deletes the book with the given id
+    // Deletes the profile with the given email
     deleteProfile: function (id) {
         return axios.delete("/api/profile/" + id);
     },
-    // Saves a book to the database
+    // Saves a profile to the database
     saveProfile: function (profileData) {
         return axios.post("/api/profile", profileData);
     },

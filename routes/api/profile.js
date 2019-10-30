@@ -14,6 +14,7 @@ router
     .put(userController.update)
     .delete(userController.remove);
 
-router.route("/:email")
+router.route("/email/:email")
     .get(userController.findOne)
+
 module.exports = router;

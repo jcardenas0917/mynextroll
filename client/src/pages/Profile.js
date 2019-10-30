@@ -20,7 +20,7 @@ class Profile extends Component {
     console.log(email)
     API.getProfile(email)
       .then(res =>
-        this.setState({ profile: res.data[0] }))
+        this.setState({ profile: res.data }))
       .catch(err => console.log(err));
   }
 
