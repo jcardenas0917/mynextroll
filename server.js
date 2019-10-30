@@ -23,7 +23,7 @@ app.use(express.static(join(__dirname, "build")));
 app.use((_, res) => {
     res.sendFile(join(__dirname, "build", "index.html"));
 });
-require('./routes/Auth0');
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mynextroll", { useNewUrlParser: true });
