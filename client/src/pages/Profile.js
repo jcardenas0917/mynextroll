@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import ProfileTemplate from '../components/ProfileTemplate'
+import { Auth0Context } from "../react-auth0-spa";
 
 class Profile extends Component {
+  static contextType = Auth0Context;
   state = {
-    profile: {},
-    token: ''
+    profile: {}
+
   }
   componentDidMount() {
     this.loadProfile();
@@ -13,7 +15,10 @@ class Profile extends Component {
   };
 
   loadProfile = () => {
-    API.getProfiles(this.state.token)
+    const { user } = this.context;
+    let email = user.email;
+    console.log(email)
+    API.getProfile(email)
       .then(res =>
         this.setState({ profile: res.data[0] }))
       .catch(err => console.log(err));

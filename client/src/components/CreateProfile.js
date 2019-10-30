@@ -63,11 +63,10 @@ class CreateProfile extends Component {
     }
 
     render() {
-        const { user, token } = this.context;
+        const { user } = this.context;
         return (
             <div>
-                {token}
-                {user.email}
+
                 <RegBackground>
                     <Title>Create Your Profile</Title>
                     <form>
