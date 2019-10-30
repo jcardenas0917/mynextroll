@@ -8,19 +8,13 @@ export function Input(props) {
         </div>
     )
 }
-// export function Stripes(props) {
-//     return (
-//         <div className="form-group">
-//             <select className="form-control" {...props}>
-//                 <option>No stripes yet</option>
-//                 <option>One stripe</option>
-//                 <option>Two stripes</option>
-//                 <option>Three stripes</option>
-//                 <option>Four stripes</option>
-//             </select>
-//         </div>
-//     )
-// }
+export function Email(props) {
+    return (
+        <div className="form-group">
+            <input className="form-control" {...props} />
+        </div>
+    )
+}
 export function Belts(props) {
     return (
         <div className="form-group">

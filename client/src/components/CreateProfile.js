@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Input, FormBtn, Belts } from '../components/CreateProfileForm'
+import { Input, FormBtn, Belts, Email } from '../components/CreateProfileForm'
 import Title from '../components/Title';
 import RegBackground from '../components/RegBackground';
+import { Auth0Context } from "../react-auth0-spa";
 
 class CreateProfile extends Component {
+    static contextType = Auth0Context;
     state = {
         name: "",
         email: "",
-        userName: "",
-        password: "",
         belt: "",
         stripes: "",
         academy: "",
@@ -32,7 +32,11 @@ class CreateProfile extends Component {
     }
     handleFormSubmit = event => {
         event.preventDefault();
+        const { user } = this.context;
+        let email = user.email;
+        console.log(email)
         API.saveProfile({
+            email: email,
             name: this.state.name,
             belt: this.state.belt,
             stripes: this.state.stripes,
@@ -59,8 +63,11 @@ class CreateProfile extends Component {
     }
 
     render() {
+        const { user, token } = this.context;
         return (
             <div>
+                {token}
+                {user.email}
                 <RegBackground>
                     <Title>Create Your Profile</Title>
                     <form>
@@ -68,6 +75,12 @@ class CreateProfile extends Component {
                             <div className="col-2"></div>
                             <div className="col-8">
                                 <Jumbotron>
+                                    Email
+                                <Email
+                                        value={user.email}
+                                        onChange={this.handleInputChange}
+                                        name="email"
+                                    />
                                     Name
                                 <Input
                                         value={this.state.name}

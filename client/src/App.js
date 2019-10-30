@@ -41,7 +41,7 @@ const App = () => {
             <PrivateRoute exact path="/journal" component={Journal} />
             <PrivateRoute exact path="/community" component={Community} />
             <PrivateRoute exact path="/create" component={CreateProfile} />
-            <PrivateRoute component={NoMatch} />
+            <Route component={NoMatch} />
           </Switch>
         </Container>
         <Footer />
