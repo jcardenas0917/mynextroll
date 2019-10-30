@@ -17,7 +17,6 @@ class Profile extends Component {
   loadProfile = () => {
     const { user } = this.context;
     let email = user.email;
-    console.log(email)
     API.getProfile(email)
       .then(res =>
         this.setState({ profile: res.data }))

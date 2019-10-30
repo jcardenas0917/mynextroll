@@ -7,8 +7,6 @@ export default {
     },
     // Gets the profile with the given email
     getProfile: function (email) {
-        let test = "hello"
-        console.log(test);
         return axios.get("/api/profile/email/" + email);
     },
     // Deletes the profile with the given email
