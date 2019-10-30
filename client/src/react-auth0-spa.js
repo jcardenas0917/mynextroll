@@ -14,6 +14,7 @@ export const Auth0Provider = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
+  const [token, setToken] = useState();
   const [auth0Client, setAuth0] = useState();
   const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -34,6 +35,7 @@ export const Auth0Provider = ({
 
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
+        setToken(auth0FromHook.cache.cache['default::openid profile email'].access_token);
         setUser(user);
       }
 
@@ -72,6 +74,7 @@ export const Auth0Provider = ({
         user,
         loading,
         popupOpen,
+        token,
         loginWithPopup,
         handleRedirectCallback,
         getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),

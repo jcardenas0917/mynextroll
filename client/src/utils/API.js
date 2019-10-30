@@ -4,7 +4,7 @@ const request = require("request");
 export default {
     // Gets all profiles
     getProfiles: function () {
-        return axios.get("/api/profile");
+        return axios.get("/api/profile")
     },
     // Gets the book with the given id
     getProfile: function (id) {

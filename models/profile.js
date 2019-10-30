@@ -3,9 +3,6 @@ const Schema = mongoose.Schema;
 
 const profileSchema = new Schema({
     name: { type: String },
-    email: { type: String },
-    username: { type: String },
-    password: { type: String },
     belt: { type: String },
     stripes: { type: Number },
     academy: { type: String },
