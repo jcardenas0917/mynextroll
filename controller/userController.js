@@ -9,8 +9,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findOne: function (req, res) {
-        console.log("test")
-        console.log(req.params.email);
         db.Profile
             .findOne({ email: req.params.email })
             .then(dbModel => res.json(dbModel))
@@ -30,7 +28,7 @@ module.exports = {
     },
     update: function (req, res) {
         db.Profile
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .findOneAndUpdate({ email: req.params.email }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

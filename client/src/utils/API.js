@@ -10,11 +10,15 @@ export default {
         return axios.get("/api/profile/email/" + email);
     },
     // Deletes the profile with the given email
-    deleteProfile: function (id) {
-        return axios.delete("/api/profile/" + id);
+    deleteProfile: function (email) {
+        return axios.delete("/api/profile/email" + email);
     },
     // Saves a profile to the database
     saveProfile: function (profileData) {
         return axios.post("/api/profile", profileData);
     },
+
+    updateProfile: function (email, profileData) {
+        return axios.put("/api/profile/email/" + email, profileData)
+    }
 };

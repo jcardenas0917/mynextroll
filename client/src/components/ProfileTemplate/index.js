@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 
+
 function ProfileTemplate(props) {
     return (
         <div className="container emp-profile">
@@ -32,10 +33,10 @@ function ProfileTemplate(props) {
                         </div>
                     </div>
                     <div className="col-md-2">
-                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                        <a href="/edit">Edit Profile</a>
                     </div>
                     <div className="col-md-2">
-                        <input type="button" className="profile-create-btn" name="btnCreate" value="Create Profile" />
+                        <a href="/create">Create Profile</a>
                     </div>
                 </div>
                 <div className="row">

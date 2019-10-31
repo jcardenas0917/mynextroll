@@ -11,6 +11,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     this.loadProfile();
+    console.log(this.state.profile)
     // debugger;
   };
 

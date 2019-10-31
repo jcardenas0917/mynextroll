@@ -50,9 +50,6 @@ const NavBar = () => {
                 <li className="nav-item">
                   <Link className="nav-link" to="/community">Community</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/create">Create Profile</Link>
-                </li>
               </ul>
             </Nav>
 

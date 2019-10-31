@@ -5,7 +5,7 @@ const profileSchema = new Schema({
     email: { type: String },
     name: { type: String },
     belt: { type: String },
-    stripes: { type: Number },
+    stripes: { type: String },
     academy: { type: String },
     city: { type: String },
     profession: { type: String },

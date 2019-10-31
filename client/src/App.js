@@ -13,14 +13,10 @@ import Profile from "./pages/Profile";
 import Journal from "./pages/Journal";
 import Community from "./pages/Community";
 import NoMatch from './pages/NoMatch';
-
-
-// styles
 import "./App.css";
-
-// fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
 import CreateProfile from "./components/CreateProfile";
+import EditProfile from "./components/EditProfile";
 initFontAwesome();
 
 const App = () => {
@@ -41,6 +37,7 @@ const App = () => {
             <PrivateRoute exact path="/journal" component={Journal} />
             <PrivateRoute exact path="/community" component={Community} />
             <PrivateRoute exact path="/create" component={CreateProfile} />
+            <PrivateRoute exact path="/edit" component={EditProfile} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
