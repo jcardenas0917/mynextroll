@@ -20,10 +20,6 @@ class CreateProfile extends Component {
         instructor: "",
         image: ""
     }
-
-    componentDidMount() {
-
-    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -47,26 +43,14 @@ class CreateProfile extends Component {
             instructor: this.state.instructor,
             image: this.state.image
         })
-            .then(res => this.getProfile())
             .catch(err => console.log(err))
-        this.setState({
-            name: "",
-            belt: "",
-            stripes: "",
-            academy: "",
-            city: "",
-            profession: "",
-            sub: "",
-            instructor: "",
-            image: ""
-        });
+        this.props.history.push('/profile');
     }
 
     render() {
         const { user } = this.context;
         return (
             <div>
-
                 <RegBackground>
                     <Title>Create Your Profile</Title>
                     <form>

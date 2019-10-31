@@ -15,21 +15,6 @@ class EditProfile extends Component {
         }
 
     }
-    componentDidMount() {
-        // this.loadProfile();
-        // console.log(this.state.profile);
-    };
-
-    // loadProfile = () => {
-    //     const { user } = this.context;
-    //     let email = user.email;
-    //     console.log(email);
-    //     API.getProfile(email)
-    //         .then(res =>
-    //             this.setState({ profile: res.data }))
-    //         .catch(err => console.log(err));
-
-    // }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({

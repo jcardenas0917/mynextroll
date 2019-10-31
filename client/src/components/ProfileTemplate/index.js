@@ -1,11 +1,13 @@
 import React from "react";
 import "./style.css";
+import EditButton from '../EditButton';
+import CreateButton from '../CreateButton';
 
 
 function ProfileTemplate(props) {
     return (
-        <div className="container emp-profile">
-            <form method="post">
+        <div className="container">
+            <form>
                 <div className="row">
                     <div className="col-md-4">
                         <div className="profile-img">
@@ -32,12 +34,11 @@ function ProfileTemplate(props) {
                             </ul>
                         </div>
                     </div>
-                    <div className="col-md-2">
-                        <a href="/edit">Edit Profile</a>
-                    </div>
-                    <div className="col-md-2">
-                        <a href="/create">Create Profile</a>
-                    </div>
+                    {props.name === "" ? <div className="col-md-2">
+                        <CreateButton />
+                    </div> : <div className="col-md-2">
+                            <EditButton />
+                        </div>}
                 </div>
                 <div className="row">
                     <div className="col-md-4">

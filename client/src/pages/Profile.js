@@ -6,13 +6,11 @@ import { Auth0Context } from "../react-auth0-spa";
 class Profile extends Component {
   static contextType = Auth0Context;
   state = {
-    profile: {}
-
+    profile: {},
+    firstLogin: true
   }
   componentDidMount() {
     this.loadProfile();
-    console.log(this.state.profile)
-    // debugger;
   };
 
   loadProfile = () => {
@@ -20,13 +18,21 @@ class Profile extends Component {
     let email = user.email;
     API.getProfile(email)
       .then(res =>
-        this.setState({ profile: res.data }))
+        this.setState({ profile: res.data, firstLogin: false }))
       .catch(err => console.log(err));
+
   }
 
+  checkUser = () => {
+    // console.log()
+    // if (this.state.firstLogin) {
+    //   this.props.history.push('/create');
+    // }
+  }
   render() {
     return (
       <div>
+        {this.checkUser()}
         <ProfileTemplate
           name={this.state.profile.name}
           belt={this.state.profile.belt}
@@ -40,7 +46,5 @@ class Profile extends Component {
       </div>
     );
   }
-
-
 }
 export default Profile;
