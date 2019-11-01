@@ -15,10 +15,25 @@ export function Email(props) {
         </div>
     )
 }
+export function Stripes(props) {
+    return (
+        <div className="form-group">
+            <select className="form-control" {...props}>
+                <option>Select Stripes</option>
+                <option>Zero Stripes</option>
+                <option>One Stripe</option>
+                <option>Two Stripes</option>
+                <option>Three Stripes</option>
+                <option>Four Stripes</option>
+            </select>
+        </div>
+    )
+}
 export function Belts(props) {
     return (
         <div className="form-group">
             <select className="form-control" {...props}>
+                <option>Select a Belt</option>
                 <option>White</option>
                 <option>Green</option>
                 <option>Blue</option>

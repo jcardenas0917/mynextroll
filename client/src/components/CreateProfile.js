@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Input, FormBtn, Belts, Email } from '../components/CreateProfileForm'
+import { Input, FormBtn, Belts, Email, Stripes } from '../components/CreateProfileForm'
 import Title from '../components/Title';
 import RegBackground from '../components/RegBackground';
 import { Auth0Context } from "../react-auth0-spa";
@@ -77,7 +77,7 @@ class CreateProfile extends Component {
                                         name="belt"
                                         placeholder="Type Belt Rank (required)" />
                                     Stripes
-                                <Input
+                                <Stripes
                                         value={this.state.stripes}
                                         onChange={this.handleInputChange}
                                         name="stripes"

@@ -6,8 +6,7 @@ import { Auth0Context } from "../react-auth0-spa";
 class Profile extends Component {
   static contextType = Auth0Context;
   state = {
-    profile: {},
-    firstLogin: true
+    profile: {}
   }
   componentDidMount() {
     this.loadProfile();
@@ -18,21 +17,13 @@ class Profile extends Component {
     let email = user.email;
     API.getProfile(email)
       .then(res =>
-        this.setState({ profile: res.data, firstLogin: false }))
+        this.setState({ profile: res.data }))
       .catch(err => console.log(err));
-
   }
 
-  checkUser = () => {
-    // console.log()
-    // if (this.state.firstLogin) {
-    //   this.props.history.push('/create');
-    // }
-  }
   render() {
     return (
       <div>
-        {this.checkUser()}
         <ProfileTemplate
           name={this.state.profile.name}
           belt={this.state.profile.belt}
