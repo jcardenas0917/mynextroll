@@ -38,5 +38,20 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }
+    },
+
+    createJournal: function (req, res) {
+        db.Journal
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
+    findOne: function (req, res) {
+        db.Journal
+            .findOne({ user: req.params.user })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+    },
+
 };

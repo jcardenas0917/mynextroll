@@ -20,5 +20,12 @@ export default {
 
     updateProfile: function (email, profileData) {
         return axios.put("/api/profile/email/" + email, profileData)
-    }
+    },
+
+    getJournal: function (user) {
+        return axios.get("/api/journal/user/" + user);
+    },
+    saveJournal: function (journalData) {
+        return axios.post("/api/journal", journalData);
+    },
 };

@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 
-function Blog(props) {
+export function Blog(props) {
     return (
         <div className="container">
             <div className="row mt-4">
@@ -17,7 +17,7 @@ function Blog(props) {
                     </div>
                 </div>
                 <div className="col-md-2">
-                    <a className="btn btn-light" href="/cms">New Post</a>
+                    <a className="btn btn-light" href="/cms">Show Post</a>
                 </div>
             </div>
             <div className="row">
@@ -28,4 +28,11 @@ function Blog(props) {
     );
 }
 
-export default Blog;
+export function BlogResults(props) {
+    return (
+        <div className="container">
+            <p>List will show here</p>
+        </div>
+    );
+}
+

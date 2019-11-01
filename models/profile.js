@@ -13,10 +13,6 @@ const profileSchema = new Schema({
     instructor: { type: String, required: true },
     image: { type: String, required: false },
 
-    journal: [{
-        type: Schema.Types.ObjectId,
-        ref: "Journal"
-    }]
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
-import Blog from "../components/Blog";
+import { Blog, BlogResults } from "../components/Blog";
 
 class Blogs extends Component {
     state = {
@@ -15,6 +15,7 @@ class Blogs extends Component {
                 <NavBar />
                 <Title>Journal List</Title>
                 <Blog />
+                <BlogResults />
 
             </div>
         )
