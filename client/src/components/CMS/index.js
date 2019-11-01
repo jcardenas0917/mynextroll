@@ -22,9 +22,9 @@ function CMS(props) {
                             <div className="form-group">
                                 <label for="category">Select Category:</label>
                                 <select className="custom-select" id="category">
-                                    <option value="Personal">Personal</option>
-                                    <option value="Product Review">Product Review</option>
-                                    <option value="Political">Political</option>
+                                    <option value="Personal">Training</option>
+                                    <option value="Product Review">Technique</option>
+                                    <option value="Political">Personal</option>
                                 </select>
                             </div>
                             <br />
