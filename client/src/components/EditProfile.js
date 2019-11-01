@@ -10,11 +10,22 @@ import Paragraph from '../components/Paragraph';
 class EditProfile extends Component {
     static contextType = Auth0Context;
     state = {
-        profile: {
-
-        }
+        profile: {}
 
     }
+    componentDidMount() {
+        this.loadProfile();
+    };
+
+    loadProfile = () => {
+        const { user } = this.context;
+        let email = user.email;
+        API.getProfile(email)
+            .then(res =>
+                this.setState({ profile: res.data }))
+            .catch(err => console.log(err));
+    }
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -69,55 +80,55 @@ class EditProfile extends Component {
                                         value={this.state.name}
                                         onChange={this.handleInputChange}
                                         name="name"
-                                        placeholder="Name (required)" />
+                                        placeholder={this.state.profile.name} />
                                     Belt rank
                                 <Belts
                                         value={this.state.belt}
                                         onChange={this.handleInputChange}
                                         name="belt"
-                                        placeholder="Type Belt Rank (required)" />
+                                        placeholder={this.state.profile.belt} />
                                     Stripes
                                 <Stripes
                                         value={this.state.stripes}
                                         onChange={this.handleInputChange}
                                         name="stripes"
-                                        placeholder="Number of Stripes (required numbers only)" />
+                                        placeholder={this.state.profile.stripes} />
                                     Academy
                                 <Input
                                         value={this.state.academy}
                                         onChange={this.handleInputChange}
                                         name="academy"
-                                        placeholder="Name of Academy (required)" />
+                                        placeholder={this.state.profile.academy} />
                                     City
                                 <Input
                                         value={this.state.city}
                                         onChange={this.handleInputChange}
                                         name="city"
-                                        placeholder="Where do you train (required)" />
+                                        placeholder={this.state.profile.city} />
                                     Instructor
                                 <Input
                                         value={this.state.instructor}
                                         onChange={this.handleInputChange}
                                         name="instructor"
-                                        placeholder="Who is your instructor(required)" />
+                                        placeholder={this.state.profile.instructor} />
                                     Favorite Submission
                                 <Input
                                         value={this.state.sub}
                                         onChange={this.handleInputChange}
                                         name="sub"
-                                        placeholder="Favorite Submission (required)" />
+                                        placeholder={this.state.profile.sub} />
                                     Profession
                                 <Input
                                         value={this.state.profession}
                                         onChange={this.handleInputChange}
                                         name="profession"
-                                        placeholder="What do you do (required)" />
+                                        placeholder={this.state.profile.profession} />
                                     Image Link
                                 <Input
                                         value={this.state.image}
                                         onChange={this.handleInputChange}
                                         name="image"
-                                        placeholder="Copy and Paste Image link" />
+                                        placeholder={this.state.profile.image} />
                                     <FormBtn
                                         onClick={this.handleFormSubmit} />
                                 </Jumbotron>
