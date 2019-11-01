@@ -6,6 +6,7 @@ import Title from '../components/Title';
 import RegBackground from '../components/RegBackground';
 import { Auth0Context } from "../react-auth0-spa";
 import Paragraph from '../components/Paragraph';
+import Cancel from "../components/CancelButton"
 
 class EditProfile extends Component {
     static contextType = Auth0Context;
@@ -131,6 +132,7 @@ class EditProfile extends Component {
                                         placeholder={this.state.profile.image} />
                                     <FormBtn
                                         onClick={this.handleFormSubmit} />
+                                    <Cancel />
                                 </Jumbotron>
                             </div>
                         </div>

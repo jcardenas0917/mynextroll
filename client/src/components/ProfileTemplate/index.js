@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import EditButton from '../EditButton';
-import CreateButton from '../CreateButton';
+
 
 
 function ProfileTemplate(props) {
@@ -34,11 +34,10 @@ function ProfileTemplate(props) {
                             </ul>
                         </div>
                     </div>
-                    {props.name === "" ? <div className="col-md-2">
-                        <CreateButton />
-                    </div> : <div className="col-md-2">
-                            <EditButton />
-                        </div>}
+
+                    <div className="col-md-2">
+                        <EditButton />
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-4">

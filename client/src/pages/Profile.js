@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import ProfileTemplate from '../components/ProfileTemplate'
 import { Auth0Context } from "../react-auth0-spa";
+import NavBar from "../components/NavBar";
+import Title from "../components/Title";
 
 class Profile extends Component {
   static contextType = Auth0Context;
@@ -24,6 +26,8 @@ class Profile extends Component {
   render() {
     return (
       <div>
+        <NavBar />
+        <Title>Profile</Title>
         <ProfileTemplate
           name={this.state.profile.name}
           belt={this.state.profile.belt}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import NavBar from "../components/NavBar";
+import Title from "../components/Title";
 
 class Community extends Component {
     state = {
@@ -9,7 +10,11 @@ class Community extends Component {
 
     render() {
         return (
-            <h1>Under Construction</h1>
+            <div>
+                <NavBar />
+                <Title>Community</Title>
+                <h1>Under Construction</h1>
+            </div>
         )
     }
 }

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Background from '../components/Background';
 import { Auth0Context } from "../react-auth0-spa";
+import NavBar from "../components/NavBar";
 import API from "../utils/API";
+import Title from "../components/Title";
 
 class Home extends Component {
   static contextType = Auth0Context;
@@ -27,17 +29,12 @@ class Home extends Component {
 
     }
   }
-  // checkUser = (email) => {
-  //   console.log(email + "from db");
-  //   const { user } = this.context;
-  //   console.log(user.email + " from Alt0");
-  //   if (user.email === email) {
-  //     // this.props.history.push('/create');
-  //   }
-  // }
+
   render() {
     return (
       <div>
+        <NavBar />
+        <Title>Welcome</Title>
         <Background />
       </div>
     )
