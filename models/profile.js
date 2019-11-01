@@ -2,16 +2,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const profileSchema = new Schema({
-    email: { type: String },
-    name: { type: String },
-    belt: { type: String },
-    stripes: { type: String },
-    academy: { type: String },
-    city: { type: String },
-    profession: { type: String },
-    sub: { type: String },
-    instructor: { type: String },
+    email: { type: String, required: true },
+    name: { type: String, required: true },
+    belt: { type: String, required: true },
+    stripes: { type: String, required: true },
+    academy: { type: String, required: true },
+    city: { type: String, required: true },
+    profession: { type: String, required: true },
+    sub: { type: String, required: true },
+    instructor: { type: String, required: true },
     image: { type: String, required: false },
+
+    journal: [{
+        type: Schema.Types.ObjectId,
+        ref: "Journal"
+    }]
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

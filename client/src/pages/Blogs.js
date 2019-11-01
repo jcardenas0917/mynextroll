@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
-import CMS from "../components/CMS";
+import Blog from "../components/Blog";
 
-class Journal extends Component {
+class Blogs extends Component {
     state = {
 
     }
@@ -13,13 +13,13 @@ class Journal extends Component {
         return (
             <div>
                 <NavBar />
-                <Title>Journal</Title>
-                <CMS />
+                <Title>Journal List</Title>
+                <Blog />
 
             </div>
         )
     }
 }
 
-export default Journal;
+export default Blogs;
 
