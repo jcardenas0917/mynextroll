@@ -47,7 +47,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    findOne: function (req, res) {
+    findOneJournal: function (req, res) {
         db.Journal
             .findOne({ user: req.params.user })
             .then(dbModel => res.json(dbModel))

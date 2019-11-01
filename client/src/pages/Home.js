@@ -12,7 +12,7 @@ class Home extends Component {
   }
   async componentDidMount() {
     const { user } = this.context;
-
+    console.log(user)
     // If logged into Auth0
     if (user) {
       // User Auth0 email to search your DB.  Load MyNextRoll profile

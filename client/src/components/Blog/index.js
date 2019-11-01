@@ -2,30 +2,17 @@ import React from "react";
 import "./style.css";
 
 
-export function Blog(props) {
+export function Category(props) {
     return (
-        <div className="container">
-            <div className="row mt-4">
-                <div className="col-md-4">
-                    <div className="form-group">
-                        <select className="custom-select" id="category">
-                            <option selected value="">All Categories</option>
-                            <option value="Personal">Training</option>
-                            <option value="Product Review">Technique</option>
-                            <option value="Political">Personal</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="col-md-2">
-                    <a className="btn btn-light" href="/cms">Show Post</a>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12 blog-container">
-                </div>
-            </div>
+        <div className="form-group">
+            <select className="form-control" {...props}>
+                <option>Select Category</option>
+                <option>Training</option>
+                <option>Technique</option>
+                <option>Personal</option>
+            </select>
         </div>
-    );
+    )
 }
 
 export function BlogResults(props) {

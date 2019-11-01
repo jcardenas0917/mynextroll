@@ -5,8 +5,8 @@ const userController = require("../../controller/userController");
 // Matches with "/api/journal/
 
 router.route("/user/:user")
-    .get(userController.findOne)
+    .get(userController.findOneJournal)
 
 router.route("/")
-    .post(userController.create);
+    .post(userController.createJournal);
 module.exports = router;
