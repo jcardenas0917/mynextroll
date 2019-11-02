@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
     // Gets all profiles
     getProfiles: function () {
-        return axios.get("/api/profile")
+        return axios.get("/api/profile");
     },
     // Gets the profile with the given email
     getProfile: function (email) {
@@ -27,5 +27,9 @@ export default {
     },
     saveJournal: function (journalData) {
         return axios.post("/api/journal", journalData);
+    },
+
+    getJournals: function () {
+        return axios.get("/api/journal");
     },
 };

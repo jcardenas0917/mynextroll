@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 
-
 export function Category(props) {
     return (
         <div className="form-group">
@@ -17,9 +16,12 @@ export function Category(props) {
 
 export function BlogResults(props) {
     return (
-        <div className="container">
-            <p>List will show here</p>
+        <div >
+            <h2>{props.title}</h2>
+            <h5>{props.category} {props.createdAt}</h5>
+            <p>{props.body}</p>
         </div>
+
     );
 }
 

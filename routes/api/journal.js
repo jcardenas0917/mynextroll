@@ -8,5 +8,6 @@ router.route("/user/:user")
     .get(userController.findOneJournal)
 
 router.route("/")
-    .post(userController.createJournal);
+    .get(userController.findAllJournals)
+    .post(userController.createJournal)
 module.exports = router;
