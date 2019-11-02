@@ -10,18 +10,28 @@ import moment from 'moment';
 class Blogs extends Component {
     static contextType = Auth0Context;
     state = {
-        journals: [{}]
+        journals: [{}],
+        filtered: [{}]
     }
     async componentDidMount() {
-
-    }
-    handleShow = event => {
-        event.preventDefault();
         const { user } = this.context;
-        API.getJournals(user.nickname)
+        await API.getJournals(user.nickname)
             .then(res =>
                 this.setState({ journals: res.data }))
             .catch(err => console.log(err));
+    }
+    filterJournals = () => {
+        let filteredJournals = this.state.journals
+        // filteredJournals = filteredJournals.filter(journal => journal.category)
+        console.log(filteredJournals)
+        // this.setState({
+        //   filterJournals
+        // })
+    }
+
+    fixTime = (time) => {
+        console.log(time)
+        return moment(time).format('MMMM Do YYYY, h:mm:ss a')
     }
     render() {
         return (
@@ -37,7 +47,7 @@ class Blogs extends Component {
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-4">
-                        <button type="button" className="btn btn-light" onClick={this.handleShow}>Click Me!</button>
+                        <button className="button" onClick={this.filterJournals()}>Click me</button>
                         {this.state.journals.map(journal => (
                             <BlogResults
                                 key={journal.id}
@@ -45,7 +55,7 @@ class Blogs extends Component {
                                 title={journal.title}
                                 body={journal.body}
                                 category={journal.category}
-                                createdAt={moment(journal.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                                createdAt={this.fixTime(journal.createdAt)}
                             />
                         ))}
                     </div>
