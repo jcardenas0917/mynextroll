@@ -10,4 +10,7 @@ router.route("/user/:user")
 router.route("/")
     .get(userController.findAllJournals)
     .post(userController.createJournal)
+
+router.route("/id/:id")
+    .delete(userController.removeJournal)
 module.exports = router;

@@ -61,4 +61,12 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    removeJournal: function (req, res) {
+        db.Journal
+            .findById({ _id: req.params.id })
+            .then(dbModel => dbModel.remove())
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
 };

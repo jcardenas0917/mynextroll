@@ -32,4 +32,8 @@ export default {
     getJournals: function () {
         return axios.get("/api/journal");
     },
+
+    deleteJournal: function (id) {
+        return axios.delete("/api/journal/id" + id);
+    },
 };

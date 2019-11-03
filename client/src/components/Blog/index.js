@@ -18,13 +18,22 @@ export function Category(props) {
 export function BlogResults(props) {
     return (
 
-        <div >
-            {console.log("I have called BlogResults()")}
-            <h2>{props.filter.title}</h2>
-            <h5>{props.filter.category} {moment(props.filter.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h5>
-            <p>{props.filter.body}</p>
+        <div className="card">
+            <div className="card-body">
+                <h5 className="card-title">{props.filter.title}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{props.filter.category}  {moment(props.filter.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                <p className="card-text">{props.filter.body}</p>
+            </div>
         </div>
 
     );
 }
 
+export function JournalLink(props) {
+    return (
+        <div>
+            <a className="btn btn-light" href="/journal">New Entry</a>
+        </div>
+
+    )
+}

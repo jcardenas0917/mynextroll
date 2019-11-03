@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
-import { Category, BlogResults } from "../components/Blog";
+import { Category, BlogResults, JournalLink } from "../components/Blog";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-
+import DeleteBtn from "../components/DeleteBtn";
+import Wrappper from "../components/Wrapper";
 
 class Blogs extends Component {
     static contextType = Auth0Context;
@@ -26,11 +27,16 @@ class Blogs extends Component {
         this.setState({ filteredJournals: this.state.journals.filter(filteredJournal => filteredJournal.category === event.target.value) })
         this.setState({ isFiltered: true })
     }
+    deleteEntry = id => {
+        API.deleteJournal(id)
+            .catch(err => console.log(err));
+    };
     render() {
         return (
             <div>
                 <NavBar />
                 <Title>Journal List</Title>
+                <JournalLink />
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-4">
@@ -39,18 +45,22 @@ class Blogs extends Component {
                             onChange={this.handleInputChange}
                             name="category"
                         />
-                        {this.state.isFiltered &&
-                            this.state.filteredJournals.map(filteredJournal => (
-                                <BlogResults
-                                    filter={filteredJournal}
-                                    key={filteredJournal.id}
-                                />
-                            ))}
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-4"></div>
-                    <div className="col-4">
+                    <div className="col-2"></div>
+                    <div className="col-8">
+
+                        {this.state.isFiltered &&
+                            this.state.filteredJournals.map(filteredJournal => (
+                                <Wrappper>
+                                    <BlogResults
+                                        filter={filteredJournal}
+                                        key={filteredJournal._id}
+                                    />
+                                    <DeleteBtn onClick={() => this.deleteEntry(filteredJournal._id)} />
+                                </Wrappper>
+                            ))}
                     </div>
                 </div>
             </div>
