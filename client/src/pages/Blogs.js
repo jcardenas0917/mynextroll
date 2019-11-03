@@ -4,35 +4,28 @@ import Title from "../components/Title";
 import { Category, BlogResults } from "../components/Blog";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import moment from 'moment';
 
 
 class Blogs extends Component {
     static contextType = Auth0Context;
     state = {
         journals: [{}],
-        filtered: [{}]
+        filteredJournals: [{}]
     }
     async componentDidMount() {
         const { user } = this.context;
         await API.getJournals(user.nickname)
             .then(res =>
-                this.setState({ journals: res.data }))
+                this.setState({
+                    journals: res.data
+                }))
             .catch(err => console.log(err));
     }
-    filterJournals = () => {
-        let filteredJournals = this.state.journals
-        // filteredJournals = filteredJournals.filter(journal => journal.category)
-        console.log(filteredJournals)
-        // this.setState({
-        //   filterJournals
-        // })
+
+    handleInputChange = event => {
+        this.setState({ filteredJournals: this.state.journals.filter(filteredJournal => filteredJournal.category === event.target.value) })
     }
 
-    fixTime = (time) => {
-        console.log(time)
-        return moment(time).format('MMMM Do YYYY, h:mm:ss a')
-    }
     render() {
         return (
             <div>
@@ -41,29 +34,36 @@ class Blogs extends Component {
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-4">
-                        <Category />
+                        <Category
+                            value={this.state.selection}
+                            onChange={this.handleInputChange}
+                            name="category"
+                        />
+
+                        {this.state.filteredJournals[0].createdAt &&
+                            this.state.filteredJournals.map(filteredJournal => (
+
+                                <BlogResults
+                                    filter={filteredJournal}
+                                    key={filteredJournal.id}
+                                />
+
+                            ))}
+
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-4">
-                        <button className="button" onClick={this.filterJournals()}>Click me</button>
-                        {this.state.journals.map(journal => (
-                            <BlogResults
-                                key={journal.id}
-                                user={journal.user}
-                                title={journal.title}
-                                body={journal.body}
-                                category={journal.category}
-                                createdAt={this.fixTime(journal.createdAt)}
-                            />
-                        ))}
+
+
                     </div>
                 </div>
             </div>
         )
     }
 }
+
 
 export default Blogs;
 
