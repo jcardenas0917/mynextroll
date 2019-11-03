@@ -10,7 +10,8 @@ class Blogs extends Component {
     static contextType = Auth0Context;
     state = {
         journals: [{}],
-        filteredJournals: [{}]
+        filteredJournals: [{}],
+        isFiltered: false
     }
     async componentDidMount() {
         const { user } = this.context;
@@ -21,11 +22,10 @@ class Blogs extends Component {
                 }))
             .catch(err => console.log(err));
     }
-
     handleInputChange = event => {
         this.setState({ filteredJournals: this.state.journals.filter(filteredJournal => filteredJournal.category === event.target.value) })
+        this.setState({ isFiltered: true })
     }
-
     render() {
         return (
             <div>
@@ -39,24 +39,18 @@ class Blogs extends Component {
                             onChange={this.handleInputChange}
                             name="category"
                         />
-
-                        {this.state.filteredJournals[0].createdAt &&
+                        {this.state.isFiltered &&
                             this.state.filteredJournals.map(filteredJournal => (
-
                                 <BlogResults
                                     filter={filteredJournal}
                                     key={filteredJournal.id}
                                 />
-
                             ))}
-
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-4">
-
-
                     </div>
                 </div>
             </div>
