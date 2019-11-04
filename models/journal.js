@@ -3,10 +3,10 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let JournalSchema = new Schema({
-    user: { type: String },
-    title: { type: String },
-    body: { type: String },
-    category: { type: String },
+    user: { type: String, required: true },
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    category: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
 
