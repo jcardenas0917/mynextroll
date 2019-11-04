@@ -4,7 +4,7 @@ import "./style.css";
 function DeleteBtn(props) {
   return (
     <span className="delete-btn" {...props} role="button" tabIndex="0">
-      <i className="material-icons">delete</i>
+      <i className="material-icons delete">delete</i>
     </span>
   );
 }

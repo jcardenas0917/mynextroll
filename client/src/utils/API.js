@@ -23,17 +23,19 @@ export default {
     },
 
     getJournal: function (user) {
+        console.log(user)
         return axios.get("/api/journal/user/" + user);
     },
     saveJournal: function (journalData) {
         return axios.post("/api/journal", journalData);
     },
 
-    getJournals: function () {
-        return axios.get("/api/journal");
-    },
+    // getJournals: function () {
+    //     return axios.get("/api/journal");
+    // },
 
     deleteJournal: function (id) {
-        return axios.delete("/api/journal/id" + id);
+        console.log(id)
+        return axios.delete("/api/journal/id/" + id);
     },
 };

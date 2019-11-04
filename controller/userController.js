@@ -49,7 +49,7 @@ module.exports = {
 
     findOneJournal: function (req, res) {
         db.Journal
-            .findOne({ user: req.params.user })
+            .find({ user: req.params.user })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },

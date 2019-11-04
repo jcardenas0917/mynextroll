@@ -12,24 +12,33 @@ class Blogs extends Component {
     state = {
         journals: [{}],
         filteredJournals: [{}],
-        isFiltered: false
+        isFiltered: false,
     }
     async componentDidMount() {
         const { user } = this.context;
-        await API.getJournals(user.nickname)
+        console.log(user.nickname)
+        await API.getJournal(user.nickname)
             .then(res =>
                 this.setState({
                     journals: res.data
-                }))
+                }),
+            )
             .catch(err => console.log(err));
     }
     handleInputChange = event => {
         this.setState({ filteredJournals: this.state.journals.filter(filteredJournal => filteredJournal.category === event.target.value) })
-        this.setState({ isFiltered: true })
+        this.setState({ isFiltered: true });
     }
     deleteEntry = id => {
         API.deleteJournal(id)
-            .catch(err => console.log(err));
+            .then(res => this.confirm()
+            )
+            .catch(err => console.log(err))
+    };
+
+    confirm = () => {
+        alert("Journal Deleted")
+        window.location.reload();
     };
     render() {
         return (

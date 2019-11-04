@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
-import { Input, FormBtn, Belts, Email, Stripes } from '../components/CreateProfileForm'
-import Title from '../components/Title';
-import RegBackground from '../components/RegBackground';
+import Jumbotron from "./Jumbotron";
+import { Input, FormBtn, Belts, Email, Stripes } from './CreateProfileForm'
+import Title from './Title';
+import RegBackground from './RegBackground';
 import { Auth0Context } from "../react-auth0-spa";
 
 const initialState = {
@@ -26,7 +25,7 @@ const initialState = {
     subError: "",
     instructorError: ""
 }
-class CreateProfile extends Component {
+class ValidationForm extends Component {
     static contextType = Auth0Context;
     state = {
         name: "",
@@ -47,7 +46,6 @@ class CreateProfile extends Component {
         professionError: "",
         subError: "",
         instructorError: ""
-
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -55,6 +53,7 @@ class CreateProfile extends Component {
             [name]: value
         });
     }
+
     validate = () => {
         let nameError = "";
         let beltError = "";
@@ -102,32 +101,8 @@ class CreateProfile extends Component {
             console.log(this.state)
             this.setState(initialState);
         }
-        const { user } = this.context;
-        let email = user.email;
 
-        API.saveProfile({
-            email: email,
-            name: this.state.name,
-            belt: this.state.belt,
-            stripes: this.state.stripes,
-            academy: this.state.academy,
-            city: this.state.city,
-            profession: this.state.profession,
-            sub: this.state.sub,
-            instructor: this.state.instructor,
-            image: this.state.image
-        })
-            .catch(err => console.log(err))
-        this.setRedirect();
     }
-    setRedirect = () => {
-        const isValid = this.validate()
-        if (isValid) {
-            console.log(this.state)
-            this.props.history.push('/profile');
-        }
-    }
-
 
     render() {
         const { user } = this.context;
@@ -217,8 +192,6 @@ class CreateProfile extends Component {
                                         name="image"
                                         placeholder="Copy and Paste Image link" />
                                     <FormBtn
-                                        // disabled={!(this.state.name && this.state.belt && this.state.stripes && this.state.academy && this.state.city
-                                        //     && this.state.instructor && this.state.sub && this.state.profession)}
                                         onClick={this.handleFormSubmit} />
                                 </Jumbotron>
                             </div>
@@ -230,4 +203,4 @@ class CreateProfile extends Component {
     }
 }
 
-export default CreateProfile;
+export default ValidationForm;

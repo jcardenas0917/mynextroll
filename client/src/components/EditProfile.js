@@ -11,8 +11,8 @@ import Cancel from "../components/CancelButton"
 class EditProfile extends Component {
     static contextType = Auth0Context;
     state = {
-        profile: {}
-
+        profile: {},
+        formValid: false
     }
     componentDidMount() {
         this.loadProfile();
@@ -52,9 +52,7 @@ class EditProfile extends Component {
             .catch(err => console.log(err))
         this.props.history.push('/profile');
     }
-    setRedirect = () => {
 
-    }
     render() {
         const { user } = this.context;
         console.log(this.state.profile.name)

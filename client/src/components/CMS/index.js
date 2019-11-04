@@ -27,8 +27,8 @@ export function JournalBody(props) {
 export function Category(props) {
     return (
         <div className="form-group">
-            <select className="form-control" {...props}>
-                <option>Select Category</option>
+            <select className="form-control" defaultValue={'DEFAULT'} {...props}>
+                <option value="DEFAULT" disabled>Select A Category</option>
                 <option>Training</option>
                 <option>Technique</option>
                 <option>Personal</option>
