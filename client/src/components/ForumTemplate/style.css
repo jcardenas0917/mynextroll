@@ -1,0 +1,15 @@
+.user {
+  width: 100%;
+}
+.formTitle {
+  width: 100%;
+}
+.formBody {
+  width: 100%;
+}
+.like {
+  cursor: pointer;
+}
+.comment {
+  cursor: pointer;
+}
