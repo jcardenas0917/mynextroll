@@ -13,3 +13,6 @@
 .comment {
   cursor: pointer;
 }
+.forum {
+  border-style: double;
+}

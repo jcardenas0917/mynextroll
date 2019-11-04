@@ -38,7 +38,7 @@ export function FormBtn(props) {
 export function ForumTemplate(props) {
   return (
     <div className="card">
-      <div className="card-body">
+      <div className="card-body forum">
         <h5 className="card-title">{props.post.title}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{props.post.user}</h6>
         <h6 className="card-subtitle mb-2 text-muted">{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h6>

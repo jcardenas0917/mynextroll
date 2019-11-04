@@ -5,6 +5,7 @@ import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
 import Wrappper from "../components/Wrapper";
 import { User, ForumTitle, ForumBody, FormBtn, ForumTemplate } from '../components/ForumTemplate';
+import Search from "../components/Search/index";
 
 class Community extends Component {
     static contextType = Auth0Context;
@@ -15,7 +16,8 @@ class Community extends Component {
         titleError: "",
         bodyError: "",
         categoryError: "",
-        posts: [{}]
+        posts: [{}],
+        search: ""
     }
     async componentDidMount() {
         const { user } = this.context;
@@ -55,6 +57,12 @@ class Community extends Component {
             <div>
                 <NavBar />
                 <Title>Community</Title>
+                <Search
+                    value={this.state.search}
+                    onChange={this.handleInputChange}
+                    name="search"
+                    placeholder="Search" />
+
                 <div className="row">
                     <div className="col-7">
 
@@ -85,12 +93,12 @@ class Community extends Component {
                             onChange={this.handleInputChange}
                             name="title"
                             placeholder="Title (required)" />
-                        Body
+                        Message
             <ForumBody
                             value={this.state.body}
                             onChange={this.handleInputChange}
                             name="body"
-                            placeholder="Entry Body (required)" />
+                            placeholder="Entry Message (required)" />
                         <div className="row">
                             <div className="col-4">
                                 <FormBtn
