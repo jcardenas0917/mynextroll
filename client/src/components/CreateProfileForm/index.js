@@ -46,7 +46,7 @@ export function Belts(props) {
 }
 export function FormBtn(props) {
     return (
-        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">Submit
+        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-light">Submit
             {props.children}
         </button>
     );

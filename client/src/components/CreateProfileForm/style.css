@@ -1,4 +1,7 @@
 .jumbotron {
-  background-image: linear-gradient(to right, white, white, white, grey, grey);
+  background-color: cornflowerblue;
   color: black;
+}
+.form-group {
+  border-color: white;
 }

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Input, FormBtn, Belts, Email, Stripes } from '../components/CreateProfileForm'
+import { Input, FormBtn, Belts, Stripes } from '../components/CreateProfileForm'
 import Title from '../components/Title';
-import RegBackground from '../components/RegBackground';
 import { Auth0Context } from "../react-auth0-spa";
 import Paragraph from '../components/Paragraph';
 import Cancel from "../components/CancelButton"
@@ -54,88 +53,78 @@ class EditProfile extends Component {
     }
 
     render() {
-        const { user } = this.context;
-        console.log(this.state.profile.name)
         return (
             <div>
-                <RegBackground>
-                    <Title>Edit Your Profile</Title>
-                    <Paragraph>
-                        Only Fill out the fields you would like to update
+                <Title>Edit Your Profile</Title>
+                <Paragraph>
+                    Only Fill out the fields you would like to update
                     </Paragraph>
-                    <form>
-                        <div className="row">
-                            <div className="col-2"></div>
-                            <div className="col-8">
-                                <Jumbotron>
-                                    Email
-                                <Email
-                                        value={user.email}
-                                        onChange={this.handleInputChange}
-                                        name="email"
-                                    />
-                                    Name
+                <form>
+                    <div className="row">
+                        <div className="col-2"></div>
+                        <div className="col-8">
+                            <Jumbotron>
+                                Name
                                 <Input
-                                        value={this.state.name}
-                                        onChange={this.handleInputChange}
-                                        name="name"
-                                        placeholder={this.state.profile.name} />
-                                    Belt rank
+                                    value={this.state.name}
+                                    onChange={this.handleInputChange}
+                                    name="name"
+                                    placeholder={this.state.profile.name} />
+                                Belt rank
                                 <Belts
-                                        value={this.state.belt}
-                                        onChange={this.handleInputChange}
-                                        name="belt"
-                                        placeholder={this.state.profile.belt} />
-                                    Stripes
+                                    value={this.state.belt}
+                                    onChange={this.handleInputChange}
+                                    name="belt"
+                                    placeholder={this.state.profile.belt} />
+                                Stripes
                                 <Stripes
-                                        value={this.state.stripes}
-                                        onChange={this.handleInputChange}
-                                        name="stripes"
-                                        placeholder={this.state.profile.stripes} />
-                                    Academy
+                                    value={this.state.stripes}
+                                    onChange={this.handleInputChange}
+                                    name="stripes"
+                                    placeholder={this.state.profile.stripes} />
+                                Academy
                                 <Input
-                                        value={this.state.academy}
-                                        onChange={this.handleInputChange}
-                                        name="academy"
-                                        placeholder={this.state.profile.academy} />
-                                    City
+                                    value={this.state.academy}
+                                    onChange={this.handleInputChange}
+                                    name="academy"
+                                    placeholder={this.state.profile.academy} />
+                                City
                                 <Input
-                                        value={this.state.city}
-                                        onChange={this.handleInputChange}
-                                        name="city"
-                                        placeholder={this.state.profile.city} />
-                                    Instructor
+                                    value={this.state.city}
+                                    onChange={this.handleInputChange}
+                                    name="city"
+                                    placeholder={this.state.profile.city} />
+                                Instructor
                                 <Input
-                                        value={this.state.instructor}
-                                        onChange={this.handleInputChange}
-                                        name="instructor"
-                                        placeholder={this.state.profile.instructor} />
-                                    Favorite Submission
+                                    value={this.state.instructor}
+                                    onChange={this.handleInputChange}
+                                    name="instructor"
+                                    placeholder={this.state.profile.instructor} />
+                                Favorite Submission
                                 <Input
-                                        value={this.state.sub}
-                                        onChange={this.handleInputChange}
-                                        name="sub"
-                                        placeholder={this.state.profile.sub} />
-                                    Profession
+                                    value={this.state.sub}
+                                    onChange={this.handleInputChange}
+                                    name="sub"
+                                    placeholder={this.state.profile.sub} />
+                                Profession
                                 <Input
-                                        value={this.state.profession}
-                                        onChange={this.handleInputChange}
-                                        name="profession"
-                                        placeholder={this.state.profile.profession} />
-                                    Image Link
+                                    value={this.state.profession}
+                                    onChange={this.handleInputChange}
+                                    name="profession"
+                                    placeholder={this.state.profile.profession} />
+                                Image Link
                                 <Input
-                                        value={this.state.image}
-                                        onChange={this.handleInputChange}
-                                        name="image"
-                                        placeholder={this.state.profile.image} />
-                                    <FormBtn
-                                        onClick={this.handleFormSubmit} />
-                                    <Cancel />
-                                </Jumbotron>
-                            </div>
+                                    value={this.state.image}
+                                    onChange={this.handleInputChange}
+                                    name="image"
+                                    placeholder={this.state.profile.image} />
+                                <FormBtn
+                                    onClick={this.handleFormSubmit} />
+                                <Cancel />
+                            </Jumbotron>
                         </div>
-                    </form>
-                </RegBackground>
+                    </div>
+                </form>
             </div>
         )
     }

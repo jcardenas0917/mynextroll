@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Input, FormBtn, Belts, Email, Stripes } from '../components/CreateProfileForm'
+import { Input, FormBtn, Belts, Stripes } from '../components/CreateProfileForm'
 import Title from '../components/Title';
-import RegBackground from '../components/RegBackground';
 import { Auth0Context } from "../react-auth0-spa";
 
 const initialState = {
@@ -128,101 +127,93 @@ class CreateProfile extends Component {
         }
     }
     render() {
-        const { user } = this.context;
         return (
             <div>
-                <RegBackground>
-                    <Title>Let's Create Your Profile</Title>
-                    <form>
-                        <div className="row">
-                            <div className="col-2"></div>
-                            <div className="col-8">
-                                <Jumbotron>
-                                    Email
-                                <Email
-                                        value={user.email}
-                                        onChange={this.handleInputChange}
-                                        name="email"
-                                    />
-                                    Name
+                <Title>Let's Create Your Profile</Title>
+                <form>
+                    <div className="row">
+                        <div className="col-2"></div>
+                        <div className="col-8">
+                            <Jumbotron>
+                                Name
                                 <Input
-                                        value={this.state.name}
-                                        onChange={this.handleInputChange}
-                                        name="name"
-                                        placeholder="Name (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.nameError}</div>
-                                    Belt rank
+                                    value={this.state.name}
+                                    onChange={this.handleInputChange}
+                                    name="name"
+                                    placeholder="Name (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.nameError}</div>
+                                Belt rank
                                 <Belts
-                                        value={this.state.belt}
-                                        onChange={this.handleInputChange}
-                                        name="belt"
-                                        placeholder="Type Belt Rank (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.beltError}</div>
-                                    Stripes
+                                    value={this.state.belt}
+                                    onChange={this.handleInputChange}
+                                    name="belt"
+                                    placeholder="Type Belt Rank (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.beltError}</div>
+                                Stripes
                                 <Stripes
-                                        value={this.state.stripes}
-                                        onChange={this.handleInputChange}
-                                        name="stripes"
-                                        placeholder="Number of Stripes (required numbers only)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.stripesError}</div>
-                                    Academy
+                                    value={this.state.stripes}
+                                    onChange={this.handleInputChange}
+                                    name="stripes"
+                                    placeholder="Number of Stripes (required numbers only)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.stripesError}</div>
+                                Academy
                                 <Input
-                                        value={this.state.academy}
-                                        onChange={this.handleInputChange}
-                                        name="academy"
-                                        placeholder="Name of Academy (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.academyError}</div>
-                                    City
+                                    value={this.state.academy}
+                                    onChange={this.handleInputChange}
+                                    name="academy"
+                                    placeholder="Name of Academy (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.academyError}</div>
+                                City
                                 <Input
-                                        value={this.state.city}
-                                        onChange={this.handleInputChange}
-                                        name="city"
-                                        placeholder="Where do you train (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.cityError}</div>
-                                    Instructor
+                                    value={this.state.city}
+                                    onChange={this.handleInputChange}
+                                    name="city"
+                                    placeholder="Where do you train (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.cityError}</div>
+                                Instructor
                                 <Input
-                                        value={this.state.instructor}
-                                        onChange={this.handleInputChange}
-                                        name="instructor"
-                                        placeholder="Who is your instructor(required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.instructorError}</div>
-                                    Favorite Submission
+                                    value={this.state.instructor}
+                                    onChange={this.handleInputChange}
+                                    name="instructor"
+                                    placeholder="Who is your instructor(required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.instructorError}</div>
+                                Favorite Submission
                                 <Input
-                                        value={this.state.sub}
-                                        onChange={this.handleInputChange}
-                                        name="sub"
-                                        placeholder="Favorite Submission (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.subError}</div>
-                                    Profession
+                                    value={this.state.sub}
+                                    onChange={this.handleInputChange}
+                                    name="sub"
+                                    placeholder="Favorite Submission (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.subError}</div>
+                                Profession
                                 <Input
-                                        value={this.state.profession}
-                                        onChange={this.handleInputChange}
-                                        name="profession"
-                                        placeholder="What do you do (required)" />
-                                    <div style={{ fontSize: 12, color: "red" }}>
-                                        {this.state.professionError}</div>
-                                    Image Link
+                                    value={this.state.profession}
+                                    onChange={this.handleInputChange}
+                                    name="profession"
+                                    placeholder="What do you do (required)" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.professionError}</div>
+                                Image Link
                                 <Input
-                                        value={this.state.image}
-                                        onChange={this.handleInputChange}
-                                        name="image"
-                                        placeholder="Copy and Paste Image link" />
-                                    <FormBtn
-                                        // disabled={!(this.state.name && this.state.belt && this.state.stripes && this.state.academy && this.state.city
-                                        //     && this.state.instructor && this.state.sub && this.state.profession)}
-                                        onClick={this.handleFormSubmit} />
-                                </Jumbotron>
-                            </div>
+                                    value={this.state.image}
+                                    onChange={this.handleInputChange}
+                                    name="image"
+                                    placeholder="Copy and Paste Image link" />
+                                <FormBtn
+                                    // disabled={!(this.state.name && this.state.belt && this.state.stripes && this.state.academy && this.state.city
+                                    //     && this.state.instructor && this.state.sub && this.state.profession)}
+                                    onClick={this.handleFormSubmit} />
+                            </Jumbotron>
                         </div>
-                    </form>
-                </RegBackground>
+                    </div>
+                </form>
+
             </div>
         )
     }
