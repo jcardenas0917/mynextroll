@@ -127,14 +127,12 @@ class CreateProfile extends Component {
             this.props.history.push('/profile');
         }
     }
-
-
     render() {
         const { user } = this.context;
         return (
             <div>
                 <RegBackground>
-                    <Title>Create Your Profile</Title>
+                    <Title>Let's Create Your Profile</Title>
                     <form>
                         <div className="row">
                             <div className="col-2"></div>

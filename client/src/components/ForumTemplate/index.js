@@ -18,7 +18,20 @@ export function ForumTitle(props) {
     </div>
   )
 }
-
+export function Category(props) {
+  return (
+    <div className="form-group">
+      <select className="form-control" defaultValue={'DEFAULT'} {...props}>
+        <option value="DEFAULT" disabled>Select A Category</option>
+        <option>Training</option>
+        <option>Technique</option>
+        <option>Questions</option>
+        <option>Gear</option>
+        <option>Discussion</option>
+      </select>
+    </div>
+  )
+}
 export function ForumBody(props) {
   return (
     <div className="form-group">
