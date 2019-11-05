@@ -4,7 +4,7 @@ import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
 import BlogLink from "../components/Link";
-import { User, JournalTitle, JournalBody, FormBtn } from "../components/CMS";
+import { JournalTitle, JournalBody, FormBtn } from "../components/CMS";
 import { Category } from "../components/Blog";
 
 const initialState = {
@@ -83,7 +83,7 @@ class Journal extends Component {
         }
     }
     render() {
-        const { user } = this.context;
+
         return (
             <div>
                 <NavBar />
@@ -93,12 +93,6 @@ class Journal extends Component {
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-8">
-                            User
-                                <User
-                                value={user.nickname}
-                                onChange={this.handleInputChange}
-                                name="user"
-                            />
                             Title
                                 <JournalTitle
                                 value={this.state.title}

@@ -4,7 +4,7 @@ import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
 import Wrappper from "../components/Wrapper";
-import { User, ForumTitle, ForumBody, FormBtn, ForumTemplate, Category } from '../components/ForumTemplate';
+import { ForumTitle, ForumBody, FormBtn, ForumTemplate, Category } from '../components/ForumTemplate';
 import Paragraph from "../components/Paragraph";
 
 class Community extends Component {
@@ -56,8 +56,6 @@ class Community extends Component {
         window.location.reload();
     }
     render() {
-
-        const { user } = this.context;
         return (
             <div>
                 <NavBar />
@@ -92,12 +90,6 @@ class Community extends Component {
                             value={this.state.category}
                             onChange={this.handleInputChange}
                             name="category" />
-                        User
-                            <User
-                            value={user.nickname}
-                            onChange={this.handleInputChange}
-                            name="user"
-                        />
                         Title
                             <ForumTitle
                             value={this.state.title}
