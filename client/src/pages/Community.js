@@ -3,27 +3,23 @@ import NavBar from "../components/NavBar";
 import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import Wrappper from "../components/Wrapper";
-import { ForumTitle, ForumBody, FormBtn, ForumTemplate, Category } from '../components/ForumTemplate';
+import { ForumTemplate, Category } from '../components/ForumTemplate';
 import Paragraph from "../components/Paragraph";
+import { NewTopic } from "../components/Link";
+
 
 class Community extends Component {
     static contextType = Auth0Context;
     state = {
-        user: "",
-        title: "",
-        body: "",
-        titleError: "",
-        bodyError: "",
-        categoryError: "",
         posts: [{}],
         fileteredPosts: [{}],
         search: "",
-        isFiltered: false
+        isFiltered: false,
+        id: "",
+        comments: [{}]
     }
     async componentDidMount() {
-        const { user } = this.context;
-        console.log(user.nickname)
+
         await API.getPosts()
             .then(res =>
                 this.setState({
@@ -31,6 +27,10 @@ class Community extends Component {
                 }),
             )
             .catch(err => console.log(err));
+    }
+
+    clickComment(forumId) {
+        console.log(forumId)
     }
 
     handleInputChange = event => {
@@ -43,23 +43,14 @@ class Community extends Component {
         this.setState({ fileteredPosts: this.state.posts.filter(filteredPost => filteredPost.category === event.target.value) })
         this.setState({ isFiltered: true });
     }
-    handleFormSubmit = event => {
-        event.preventDefault();
-        const { user } = this.context;
-        let nickname = user.nickname
-        API.savePost({
-            user: nickname,
-            title: this.state.title,
-            body: this.state.body,
-            category: this.state.category
-        }).catch(err => console.log(err))
-        window.location.reload();
-    }
+
     render() {
+        console.log(this.state.id)
         return (
             <div>
                 <NavBar />
                 <Title>Community</Title>
+                <NewTopic />
                 <div className="row">
                     <div className="col-4">
                         <Paragraph>Seach by catergory</Paragraph>
@@ -69,49 +60,14 @@ class Community extends Component {
                             name="results" />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-7">
-                        {this.state.isFiltered &&
-                            this.state.fileteredPosts.map(post => (
-                                <Wrappper>
-                                    <ForumTemplate
-                                        post={post}
-                                        key={post._id}
-                                    />
-                                </Wrappper>
-                            ))}
-                    </div>
-
-                    <div className="col-1">
-                    </div>
-                    <div className="col-4">
-                        Category
-                            <Category
-                            value={this.state.category}
-                            onChange={this.handleInputChange}
-                            name="category" />
-                        Title
-                            <ForumTitle
-                            value={this.state.title}
-                            onChange={this.handleInputChange}
-                            name="title"
-                            placeholder="Title (required)" />
-                        Message
-                            <ForumBody
-                            value={this.state.body}
-                            onChange={this.handleInputChange}
-                            name="body"
-                            placeholder="Entry Message (required)" />
-                        <div className="row">
-                            <div className="col-4">
-                                <FormBtn
-                                    disabled={!(this.state.title && this.state.body)}
-                                    onClick={this.handleFormSubmit} />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {this.state.isFiltered &&
+                    this.state.fileteredPosts.map(post => (
+                        <ForumTemplate
+                            post={post}
+                            key={post._id}
+                            clickComment={this.clickComment}
+                        />
+                    ))}
             </div>
         )
     }

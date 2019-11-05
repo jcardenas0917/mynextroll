@@ -1,11 +1,16 @@
 import React from "react";
-import "./style.css";
 
-function Modal(props) {
-    return <div className="collapse" id="collapseExample">
-        <div className="card card-body">
-            {}
-        </div>
+const Modal = props => (
+    <div>
+        <header>{props.title}</header>
+
+        <section className="modal-main">
+            {props.children}
+        </section>
+        <section className="modal-main">
+            <button>Cancel</button>
+            <button>Confirm</button>
+        </section>
     </div>
-}
+);
 export default Modal;

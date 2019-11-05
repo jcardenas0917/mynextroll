@@ -50,24 +50,30 @@ export function FormBtn(props) {
 
 export function ForumTemplate(props) {
   return (
-    <div className="card">
-      <div className="card-body forum">
-        <h5 className="card-title">{props.post.title}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{props.post.user}</h6>
-        <h6 className="card-subtitle mb-2 text-muted">{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h6>
-        <p className="card-text">{props.post.body}</p>
+    <div>
+      <table className="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td><h4>{props.post.title}</h4><br />
+              {props.post.body}
+            </td>
+            <td>{props.post.user}</td>
+            <td>{props.post.category}</td>
+            <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
+            <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="comments"></div>
 
-        <div className="row">
-          <div className="col-4"></div>
-          <div className="col-2">
-            <i className="material-icons like">thumb_up</i>
-          </div>
-          <div className="col-2">
-            <i className="material-icons comment">comment</i>
-          </div>
-        </div>
-      </div>
     </div>
+
+
   );
 }
+
+
+
+
 

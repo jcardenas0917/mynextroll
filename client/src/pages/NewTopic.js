@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
-import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { BlogLink } from "../components/Link";
-import { JournalTitle, JournalBody, FormBtn } from "../components/CMS";
-import { Category } from "../components/Blog";
+import { ForumLink } from "../components/Link";
+import { ForumTitle, ForumBody, FormBtn, Category } from '../components/ForumTemplate';
+
 
 const initialState = {
 
@@ -19,8 +18,7 @@ const initialState = {
 
 }
 
-
-class Journal extends Component {
+class NewTopic extends Component {
     static contextType = Auth0Context;
     state = {
         user: "",
@@ -67,7 +65,7 @@ class Journal extends Component {
         }
         const { user } = this.context;
         let nickname = user.nickname
-        API.saveJournal({
+        API.savePost({
             user: nickname,
             title: this.state.title,
             body: this.state.body,
@@ -76,10 +74,11 @@ class Journal extends Component {
         this.setRedirect();
     }
     setRedirect = () => {
+        alert("New Topic Added to Forum");
         const isValid = this.validate()
         if (isValid) {
             console.log(this.state)
-            this.props.history.push('/blog');
+            this.props.history.push('/community');
         }
     }
     render() {
@@ -87,37 +86,36 @@ class Journal extends Component {
         return (
             <div>
                 <NavBar />
-                <Title>Journal</Title>
-                <BlogLink />
+                <ForumLink />
                 <form>
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-8">
                             Title
-                                <JournalTitle
+                            <ForumTitle
                                 value={this.state.title}
                                 onChange={this.handleInputChange}
                                 name="title"
                                 placeholder="Title (required)" />
                             <div style={{ fontSize: 12, color: "red" }}>
                                 {this.state.titleError}</div>
-                            Body
-                                <JournalBody
+                            Message
+                                <ForumBody
                                 value={this.state.body}
                                 onChange={this.handleInputChange}
                                 name="body"
-                                placeholder="Journal Body (required)" />
+                                placeholder="Entry Message (required)" />
                             <div style={{ fontSize: 12, color: "red" }}>
                                 {this.state.bodyError}</div>
                             Category
                                 <Category
                                 value={this.state.selection}
                                 onChange={this.handleInputChange}
-                                name="category"
-                            />
+                                name="category" />
                             <div style={{ fontSize: 12, color: "red" }}>
                                 {this.state.categoryError}</div>
                             <FormBtn
+                                disabled={!(this.state.title && this.state.body)}
                                 onClick={this.handleFormSubmit} />
                         </div>
                     </div>
@@ -127,5 +125,5 @@ class Journal extends Component {
     }
 }
 
-export default Journal;
+export default NewTopic;
 
