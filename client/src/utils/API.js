@@ -1,19 +1,19 @@
 import axios from "axios";
 
 export default {
-    // Gets all profiles
+
     getProfiles: function () {
         return axios.get("/api/profile");
     },
-    // Gets the profile with the given email
+
     getProfile: function (email) {
         return axios.get("/api/profile/email/" + email);
     },
-    // Deletes the profile with the given email
+
     deleteProfile: function (email) {
         return axios.delete("/api/profile/email" + email);
     },
-    // Saves a profile to the database
+
     saveProfile: function (profileData) {
         return axios.post("/api/profile", profileData);
     },
@@ -23,7 +23,6 @@ export default {
     },
 
     getJournal: function (user) {
-        console.log(user)
         return axios.get("/api/journal/user/" + user);
     },
     saveJournal: function (journalData) {
@@ -31,7 +30,6 @@ export default {
     },
 
     deleteJournal: function (id) {
-        console.log(id)
         return axios.delete("/api/journal/id/" + id);
     },
 
@@ -41,5 +39,14 @@ export default {
 
     getPosts: function () {
         return axios.get("/api/forum");
+    },
+
+    saveComment: function (id, commentData) {
+        return axios.post('/api/comment/' + id, commentData)
+    },
+
+    getComments: function (id) {
+        console.log(id);
+        return axios.get("/api/forum/id/" + id);
     },
 };

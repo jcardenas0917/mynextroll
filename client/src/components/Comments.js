@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 import { Auth0Context } from "../react-auth0-spa";
 
-import { ForumTemplate } from '../components/ForumTemplate';
+import { ForumTemplate, Modal } from './ForumTemplate';
 
-class Comment extends Component {
+class Comments extends Component {
     static contextType = Auth0Context;
     state = {
         id: "",
@@ -19,11 +19,10 @@ class Comment extends Component {
     render() {
         return (
             <div>
-                <ForumTemplate
-                    clickComment={this.clickComment} />
+                <Modal />
             </div>
         )
     }
 }
 
-export default Comment;
+export default Comments;

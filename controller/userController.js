@@ -83,5 +83,28 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    createComment: function (req, res) {
+        db.Comment.create(req.body)
+            .then(function (dbComment) {
+                return db.Post.findByIdAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true });
+            })
+            .then(function (dbPost) {
+                res.json(dbPost);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    },
+
+    getComments: function (req, res) {
+        db.Post.findOne({ _id: req.params.id })
+            .populate("comment")
+            .then(function (dbPost) {
+                res.json(dbPost);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    }
 
 };

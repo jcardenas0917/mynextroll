@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { ForumTemplate, Category } from '../components/ForumTemplate';
+import { ForumTemplate, Category, Modal } from '../components/ForumTemplate';
 import Paragraph from "../components/Paragraph";
 import { NewTopic } from "../components/Link";
 
@@ -31,6 +31,11 @@ class Community extends Component {
 
     clickComment(forumId) {
         console.log(forumId)
+        API.getComments(forumId)
+            .then(res =>
+                this.setState({ comments: res.data })
+            )
+            .catch(err => console.log(err))
     }
 
     handleInputChange = event => {
@@ -43,13 +48,12 @@ class Community extends Component {
         this.setState({ fileteredPosts: this.state.posts.filter(filteredPost => filteredPost.category === event.target.value) })
         this.setState({ isFiltered: true });
     }
-
     render() {
-        console.log(this.state.id)
         return (
             <div>
                 <NavBar />
                 <Title>Community</Title>
+                <Modal />
                 <NewTopic />
                 <div className="row">
                     <div className="col-4">
