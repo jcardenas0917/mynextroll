@@ -61,11 +61,11 @@ class Blogs extends Component {
                     <div className="col-8">
 
                         {this.state.isFiltered &&
-                            this.state.filteredJournals.map(filteredJournal => (
+                            this.state.filteredJournals.map((filteredJournal, i) => (
                                 <Wrappper>
                                     <BlogResults
                                         filter={filteredJournal}
-                                        key={filteredJournal._id}
+                                        key={i}
                                     />
                                     <DeleteBtn onClick={() => this.deleteEntry(filteredJournal._id)} />
                                 </Wrappper>

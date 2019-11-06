@@ -15,7 +15,7 @@ class Community extends Component {
         fileteredPosts: [{}],
         search: "",
         isFiltered: false,
-        id: "",
+        forumId: "",
         comments: [{}]
     }
     async componentDidMount() {
@@ -31,11 +31,12 @@ class Community extends Component {
 
     clickComment(forumId) {
         console.log(forumId)
-        API.getComments(forumId)
-            .then(res =>
-                this.setState({ comments: res.data })
-            )
-            .catch(err => console.log(err))
+        this.setState({ forumId: forumId })
+        // API.getComments(forumId)
+        //     .then(res =>
+        //         this.setState({ comments: res.data })
+        //     )
+        //     .catch(err => console.log(err))
     }
 
     handleInputChange = event => {
@@ -65,10 +66,10 @@ class Community extends Component {
                     </div>
                 </div>
                 {this.state.isFiltered &&
-                    this.state.fileteredPosts.map(post => (
+                    this.state.fileteredPosts.map((post, i) => (
                         <ForumTemplate
                             post={post}
-                            key={post._id}
+                            key={i}
                             clickComment={this.clickComment}
                         />
                     ))}
