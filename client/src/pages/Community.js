@@ -31,7 +31,7 @@ class Community extends Component {
 
     clickComment(forumId) {
         console.log(forumId)
-        this.setState({ forumId: forumId })
+
         // API.getComments(forumId)
         //     .then(res =>
         //         this.setState({ comments: res.data })
