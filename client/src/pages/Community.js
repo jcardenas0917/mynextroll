@@ -32,11 +32,11 @@ class Community extends Component {
     clickComment(forumId) {
         console.log(forumId)
 
-        // API.getComments(forumId)
-        //     .then(res =>
-        //         this.setState({ comments: res.data })
-        //     )
-        //     .catch(err => console.log(err))
+        API.getComments(forumId)
+            .then(res =>
+                this.setState({ comments: res.data })
+            )
+            .catch(err => console.log(err))
     }
 
     handleInputChange = event => {

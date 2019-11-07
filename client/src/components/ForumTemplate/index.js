@@ -63,7 +63,8 @@ export function ForumTemplate(props) {
             <td>{props.post.user}</td>
             <td>{props.post.category}</td>
             <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
-            <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)} data-toggle="modal" data-target="#exampleModal">comment </i></td>
+            <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
+            <td><button type="button" className="btn btn-primary" onClick={() => tempPost(props.post._id)} data-toggle="modal" data-target="#exampleModal">Reply</button></td>
           </tr>
         </tbody>
       </table>
@@ -74,14 +75,17 @@ export function ForumTemplate(props) {
 
   );
 }
+const tempPost = tempId => {
+  console.log("this is the passed " + tempId)
+  var tempPost = tempId
+  saveComment(tempPost)
+}
 let textInput = React.createRef();
 
 const saveComment = (id) => {
+  console.log("this is the received id " + id)
   console.log(textInput.current.value)
-  console.log("passed" + id)
-  API.saveComment(id, {
-    comment: textInput.current.value
-  }).catch(err => console.log(err))
+
 }
 
 export const Modal = (props) => (
