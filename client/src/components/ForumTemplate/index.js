@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.css";
 import moment from 'moment';
-import API from "../../utils/API";
-
 
 
 export function User(props) {
@@ -44,7 +42,14 @@ export function ForumBody(props) {
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">Submit
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">Submit
+          {props.children}
+    </button>
+  );
+}
+export function ReplyBtn(props) {
+  return (
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">Reply
           {props.children}
     </button>
   );
@@ -64,58 +69,38 @@ export function ForumTemplate(props) {
             <td>{props.post.category}</td>
             <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
-            <td><button type="button" className="btn btn-primary" onClick={() => tempPost(props.post._id)} data-toggle="modal" data-target="#exampleModal">Reply</button></td>
           </tr>
         </tbody>
       </table>
       <div className="comments"></div>
-
     </div>
-
-
   );
 }
-const tempPost = tempId => {
-  console.log("this is the passed " + tempId)
-  var tempPost = tempId
-  saveComment(tempPost)
-}
-let textInput = React.createRef();
-
-const saveComment = (id) => {
-  console.log("this is the received id " + id)
-  console.log(textInput.current.value)
-
-}
-
-export const Modal = (props) => (
-
-  <div className="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <div className="modal-dialog" role="document">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title" id="exampleModalLabel">Add a comment</h5>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div className="modal-body">
-          <textarea rows="4" cols="50" id="commentBox" ref={textInput}>
-
-          </textarea>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" className="btn btn-primary" onClick={saveComment}>Add Comment</button>
-        </div>
-      </div>
+export function Comments(props) {
+  return (
+    <div>
+      <ul>
+        <li>
+          {props.id}
+        </li>
+      </ul>
     </div>
-  </div>
-);
+  );
+}
 
 export function TextArea(props) {
-  return <textarea rows="4" cols="50" className="comment">{props.children}</textarea>;
+  return (
+    <div className="form-group">
+      <textarea className="form-control" rows="5"{...props} />
+    </div>
+  )
+}
+export function ShowCommentsBtn(props) {
+  return (
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">Show Comments
+          {props.children}
+    </button>
+  );
 }
 
 

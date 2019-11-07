@@ -42,11 +42,11 @@ export default {
     },
 
     saveComment: function (id, commentData) {
-        return axios.post('/api/comment/' + id, commentData)
+        console.log(id)
+        return axios.put('/api/forum/' + id, commentData)
     },
 
     getComments: function (id) {
-        console.log(id);
-        return axios.get("/api/forum/id/" + id);
+        return axios.get("/api/forum/" + id);
     },
 };

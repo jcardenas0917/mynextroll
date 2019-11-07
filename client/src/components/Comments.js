@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Auth0Context } from "../react-auth0-spa";
 
-import { ForumTemplate, Modal } from './ForumTemplate';
+
 
 class Comments extends Component {
     static contextType = Auth0Context;
@@ -13,13 +13,16 @@ class Comments extends Component {
     componentDidMount() {
 
     }
-    clickComment(id) {
+    clickComment = forumId => {
+
+        let id = forumId
         console.log(id)
+        this.setState({ forumId: id })
     }
     render() {
         return (
             <div>
-                <Modal />
+
             </div>
         )
     }

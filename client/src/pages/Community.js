@@ -3,24 +3,33 @@ import NavBar from "../components/NavBar";
 import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { ForumTemplate, Category, Modal } from '../components/ForumTemplate';
+import { ForumTemplate, Category, TextArea, ReplyBtn, Comments } from '../components/ForumTemplate';
 import Paragraph from "../components/Paragraph";
 import { NewTopic } from "../components/Link";
 
 
 class Community extends Component {
+
     static contextType = Auth0Context;
+
     state = {
+        user: "",
+        body: "",
         posts: [{}],
         fileteredPosts: [{}],
-        search: "",
         isFiltered: false,
         forumId: "",
-        comments: [{}]
-    }
-    async componentDidMount() {
+        comments: [{}],
+        showForm: false,
+        showComments: true
 
-        await API.getPosts()
+    }
+
+    async componentDidMount() {
+        this.getPosts();
+    }
+    getPosts = () => {
+        API.getPosts()
             .then(res =>
                 this.setState({
                     posts: res.data
@@ -28,15 +37,18 @@ class Community extends Component {
             )
             .catch(err => console.log(err));
     }
-
-    clickComment(forumId) {
-        console.log(forumId)
-
-        API.getComments(forumId)
+    clickComment = forumId => {
+        this.setState({ showForm: true });
+        this.setState({ showComments: true });
+        let id = forumId
+        this.setState({ forumId: id })
+        API.getComments(id)
             .then(res =>
-                this.setState({ comments: res.data })
+                this.setState({
+                    comments: res.data
+                }),
             )
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
@@ -49,12 +61,32 @@ class Community extends Component {
         this.setState({ fileteredPosts: this.state.posts.filter(filteredPost => filteredPost.category === event.target.value) })
         this.setState({ isFiltered: true });
     }
+    handleReply = event => {
+        event.preventDefault();
+        const { user } = this.context;
+        let nickname = user.nickname
+        this.setState({ showForm: false });
+        let id = this.state.forumId
+        API.saveComment(id, {
+            user: nickname,
+            body: this.state.body,
+        }).catch(err => console.log(err))
+        this.setState({ body: "" });
+        this.setState({ showComments: true })
+
+    }
+    showComments = event => {
+        event.preventDefault();
+        this.setState({ showComments: true })
+    }
+
     render() {
+        console.log(this.state.comments)
         return (
             <div>
+
                 <NavBar />
                 <Title>Community</Title>
-                <Modal />
                 <NewTopic />
                 <div className="row">
                     <div className="col-4">
@@ -64,15 +96,39 @@ class Community extends Component {
                             onChange={this.handleSearch}
                             name="results" />
                     </div>
+                    <div className="col-2"></div>
+                    {this.state.showForm &&
+                        <div className="col-6">
+                            <TextArea
+                                value={this.state.body}
+                                onChange={this.handleInputChange}
+                                name="body"
+                                placeholder="Reply Body (required)" />
+                            <ReplyBtn onClick={this.handleReply} />
+                        </div>}
                 </div>
                 {this.state.isFiltered &&
-                    this.state.fileteredPosts.map((post, i) => (
-                        <ForumTemplate
-                            post={post}
-                            key={i}
-                            clickComment={this.clickComment}
-                        />
+                    this.state.fileteredPosts.map((post, index) => (
+                        <React.Fragment>
+                            <ForumTemplate
+                                post={post}
+                                key={index}
+                                clickComment={this.clickComment}
+
+                            />
+                            {this.state.showComments &&
+                                post.comment.map((userComment, index) => (
+                                    <Comments
+                                        id={post.comment}
+                                        user={userComment.user}
+                                        body={userComment.body}
+                                        createdAt={userComment.createdAt}
+                                        key={index} />
+                                ))}
+                            {console.log(post.comment)}
+                        </React.Fragment>
                     ))}
+
             </div>
         )
     }
