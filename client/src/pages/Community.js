@@ -21,10 +21,12 @@ class Community extends Component {
         forumId: "",
         showForm: false,
         showComments: true,
+        loaded: false
     }
 
     async componentDidMount() {
         await this.getPosts();
+        this.setState({ loaded: true })
     }
 
     getPosts = async () => {
@@ -65,11 +67,12 @@ class Community extends Component {
         await API.saveComment(id, {
             user: nickname,
             body: this.state.body,
-        }).then(async res => await this.getPosts())
+        }).then(() => this.getPosts())
             .catch(err => console.log(err))
         console.log("handleReply() saveComments promise of getPosts() should have completed")
         this.setState({ body: "" });
         this.setState({ showComments: true })
+        this.setState({ loaded: true })
     }
     render() {
         console.log("I am in render()");
