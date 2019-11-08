@@ -79,11 +79,17 @@ export function ForumTemplate(props) {
 export function Comments(props) {
   return (
     <div>
-      <ul>
-        <li>
-          {props.id}
-        </li>
-      </ul>
+      <table className="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td>{props.user}</td>
+            <td>{moment(props.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
+            <td>{props.body}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="comments"></div>
     </div>
   );
 }

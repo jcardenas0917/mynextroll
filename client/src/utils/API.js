@@ -42,7 +42,6 @@ export default {
     },
 
     saveComment: function (id, commentData) {
-        console.log(id)
         return axios.put('/api/forum/' + id, commentData)
     },
 

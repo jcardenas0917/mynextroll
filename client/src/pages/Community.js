@@ -19,21 +19,22 @@ class Community extends Component {
         fileteredPosts: [{}],
         isFiltered: false,
         forumId: "",
-        comments: [{}],
         showForm: false,
-        showComments: true
-
+        showComments: true,
     }
 
     async componentDidMount() {
-        this.getPosts();
+        await this.getPosts();
     }
-    getPosts = () => {
-        API.getPosts()
-            .then(res =>
+
+    getPosts = async () => {
+        await API.getPosts()
+            .then(res => (
                 this.setState({
                     posts: res.data
-                }),
+                })),
+                console.log("getPosts() has updated posts"),
+                this.state.posts.map(fakePost => (console.log("post object = " + JSON.stringify(fakePost)))),
             )
             .catch(err => console.log(err));
     }
@@ -42,13 +43,6 @@ class Community extends Component {
         this.setState({ showComments: true });
         let id = forumId
         this.setState({ forumId: id })
-        API.getComments(id)
-            .then(res =>
-                this.setState({
-                    comments: res.data
-                }),
-            )
-            .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
@@ -56,35 +50,31 @@ class Community extends Component {
         this.setState({
             [name]: value
         });
+
     }
     handleSearch = event => {
         this.setState({ fileteredPosts: this.state.posts.filter(filteredPost => filteredPost.category === event.target.value) })
         this.setState({ isFiltered: true });
     }
-    handleReply = event => {
+    handleReply = async event => {
         event.preventDefault();
         const { user } = this.context;
         let nickname = user.nickname
         this.setState({ showForm: false });
         let id = this.state.forumId
-        API.saveComment(id, {
+        await API.saveComment(id, {
             user: nickname,
             body: this.state.body,
-        }).catch(err => console.log(err))
+        }).then(async res => await this.getPosts())
+            .catch(err => console.log(err))
+        console.log("handleReply() saveComments promise of getPosts() should have completed")
         this.setState({ body: "" });
         this.setState({ showComments: true })
-
     }
-    showComments = event => {
-        event.preventDefault();
-        this.setState({ showComments: true })
-    }
-
     render() {
-        console.log(this.state.comments)
+        console.log("I am in render()");
         return (
             <div>
-
                 <NavBar />
                 <Title>Community</Title>
                 <NewTopic />
@@ -114,18 +104,16 @@ class Community extends Component {
                                 post={post}
                                 key={index}
                                 clickComment={this.clickComment}
-
                             />
                             {this.state.showComments &&
                                 post.comment.map((userComment, index) => (
                                     <Comments
-                                        id={post.comment}
                                         user={userComment.user}
                                         body={userComment.body}
                                         createdAt={userComment.createdAt}
-                                        key={index} />
+                                        key={index}
+                                    />
                                 ))}
-                            {console.log(post.comment)}
                         </React.Fragment>
                     ))}
 

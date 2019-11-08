@@ -79,6 +79,7 @@ module.exports = {
     showAllPosts: function (req, res) {
         db.Post
             .find(req.query)
+            .populate("comment")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
