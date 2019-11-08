@@ -8,6 +8,7 @@ import Paragraph from "../components/Paragraph";
 import { NewTopic } from "../components/Link";
 
 
+
 class Community extends Component {
 
     static contextType = Auth0Context;
@@ -45,6 +46,7 @@ class Community extends Component {
         this.setState({ showComments: true });
         let id = forumId
         this.setState({ forumId: id })
+        window.scrollTo(0, 0)
     }
 
     handleInputChange = event => {
@@ -101,20 +103,20 @@ class Community extends Component {
                         </div>}
                 </div>
                 {this.state.isFiltered &&
-                    this.state.fileteredPosts.map((post, index) => (
+                    this.state.fileteredPosts.map((post, i) => (
                         <React.Fragment>
                             <ForumTemplate
                                 post={post}
-                                key={index}
+                                key={i}
                                 clickComment={this.clickComment}
                             />
                             {this.state.showComments &&
-                                post.comment.map((userComment, index) => (
+                                post.comment.map((userComment, i) => (
                                     <Comments
                                         user={userComment.user}
                                         body={userComment.body}
                                         createdAt={userComment.createdAt}
-                                        key={index}
+                                        key={i}
                                     />
                                 ))}
                         </React.Fragment>

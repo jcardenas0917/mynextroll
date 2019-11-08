@@ -58,16 +58,16 @@ export function ReplyBtn(props) {
 export function ForumTemplate(props) {
   return (
     <div>
-      <table className="table table-striped">
+      <table className="table table-striped post">
         <tbody>
           <tr>
             <th scope="row"></th>
+            <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             <td><h4>{props.post.title}</h4><br />
               {props.post.body}
             </td>
             <td>{props.post.user}</td>
             <td>{props.post.category}</td>
-            <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
           </tr>
         </tbody>
@@ -79,13 +79,13 @@ export function ForumTemplate(props) {
 export function Comments(props) {
   return (
     <div>
-      <table className="table table-striped">
+      <table className="table table-striped post results">
         <tbody>
           <tr>
             <th scope="row"></th>
-            <td>{props.user}</td>
             <td>{moment(props.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             <td>{props.body}</td>
+            <td>{props.user}</td>
           </tr>
         </tbody>
       </table>
@@ -108,6 +108,8 @@ export function ShowCommentsBtn(props) {
     </button>
   );
 }
+
+
 
 
 

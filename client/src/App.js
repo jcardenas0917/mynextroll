@@ -18,7 +18,6 @@ import CreateProfile from "./components/CreateProfile";
 import EditProfile from "./components/EditProfile";
 import Blog from "./pages/Blogs";
 import NewTopic from "./pages/NewTopic";
-import Comments from "./components/Comments";
 initFontAwesome();
 
 const App = () => {
@@ -41,7 +40,6 @@ const App = () => {
             <PrivateRoute exact path="/edit" component={EditProfile} />
             <PrivateRoute exact path="/blog" component={Blog} />
             <PrivateRoute exact path="/newtopic" component={NewTopic} />
-            <PrivateRoute exact path="/comments" component={Comments} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
