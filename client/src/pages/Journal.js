@@ -38,7 +38,8 @@ class Blogs extends Component {
         showForm: false,
         journalId: "",
         singleJournal: {},
-        newEntry: false
+        newEntry: false,
+        hideNewEntry: true
     }
     async componentDidMount() {
         const { user } = this.context;
@@ -98,7 +99,6 @@ class Blogs extends Component {
             body: this.state.body,
             category: this.state.category
         })
-        this.setRedirect()
     }
     handleFormSubmit = event => {
         event.preventDefault();
@@ -118,15 +118,15 @@ class Blogs extends Component {
             .catch(err => console.log(err))
     }
     onCancel = () => {
-        this.setState({ showForm: false });
+        this.setState({ showForm: false, hideNewEntry: true });
     }
     showFrom = () => {
         console.log("clicked")
-        this.setState({ showForm: true, newEntry: true, isFiltered: false });
+        this.setState({ showForm: true, newEntry: true, isFiltered: false, title: "", body: "", category: "" });
     }
 
     getSingleJournal = (id) => {
-        this.setState({ showForm: true, journalId: id });
+        this.setState({ showForm: true, journalId: id, isFiltered: false, hideNewEntry: false });
         API.getJournalById(id)
             .then(res => this.setState({ singleJournal: res.data }))
             .then(() => this.setState({
@@ -141,7 +141,8 @@ class Blogs extends Component {
             <div>
                 <NavBar />
                 <Title>Journal</Title>
-                <NewJournal onClick={this.showFrom} />
+                {this.state.hideNewEntry &&
+                    <NewJournal onClick={this.showFrom} />}
                 {this.state.showForm &&
                     <form>
                         <div className="row">
@@ -186,16 +187,17 @@ class Blogs extends Component {
 
                         </div>
                     </form>}
-                <div className="row">
-                    <div className="col-4"></div>
-                    <div className="col-4">
-                        <Category
-                            value={this.state.selection}
-                            onChange={this.handleOnSearch}
-                            name="category"
-                        />
-                    </div>
-                </div>
+                {!this.state.showForm &&
+                    <div className="row">
+                        <div className="col-4"></div>
+                        <div className="col-4">
+                            <Category
+                                value={this.state.selection}
+                                onChange={this.handleOnSearch}
+                                name="category"
+                            />
+                        </div>
+                    </div>}
                 <div className="row">
                     <div className="col-2"></div>
                     <div className="col-8">
