@@ -7,10 +7,13 @@ const userController = require("../../controller/userController");
 router.route("/user/:user")
     .get(userController.findOneJournal)
 
+
 router.route("/")
     .get(userController.findAllJournals)
     .post(userController.createJournal)
 
 router.route("/id/:id")
     .delete(userController.removeJournal)
+    .put(userController.updateJournal)
+    .get(userController.findOneJournalById)
 module.exports = router;

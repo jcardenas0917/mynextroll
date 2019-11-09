@@ -43,3 +43,12 @@ export function FormBtn(props) {
         </button>
     );
 }
+export function CancelBtn(props) {
+    return (
+        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-secondary">Cancel
+            {props.children}
+        </button>
+    );
+}
+
+

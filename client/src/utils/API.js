@@ -25,12 +25,20 @@ export default {
     getJournal: function (user) {
         return axios.get("/api/journal/user/" + user);
     },
+
+    getJournalById: function (id) {
+        return axios.get("/api/journal/id/" + id);
+    },
     saveJournal: function (journalData) {
         return axios.post("/api/journal", journalData);
     },
 
     deleteJournal: function (id) {
         return axios.delete("/api/journal/id/" + id);
+    },
+
+    updateJournal: function (id, journalData) {
+        return axios.put("/api/journal/id/" + id, journalData)
     },
 
     savePost: function (forumData) {
