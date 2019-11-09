@@ -22,7 +22,7 @@ class Community extends Component {
         forumId: "",
         showForm: false,
         showComments: true,
-        loaded: false
+        selected: ""
     }
 
     async componentDidMount() {
@@ -36,10 +36,9 @@ class Community extends Component {
                 this.setState({
                     posts: res.data
                 })),
-                console.log("getPosts() has updated posts"),
-                this.state.posts.map(fakePost => (console.log("post object = " + JSON.stringify(fakePost)))),
+
             )
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
     }
     clickComment = forumId => {
         this.setState({ showForm: true });
@@ -57,27 +56,29 @@ class Community extends Component {
 
     }
     handleSearch = event => {
-        this.setState({ fileteredPosts: this.state.posts.filter(filteredPost => filteredPost.category === event.target.value) })
+        this.setState({ selected: event.target.value })
         this.setState({ isFiltered: true });
     }
     handleReply = async event => {
         event.preventDefault();
         const { user } = this.context;
         let nickname = user.nickname
-        this.setState({ showForm: false });
+        this.setState({
+            showForm: false,
+            body: "",
+            showComments: true,
+        });
         let id = this.state.forumId
         await API.saveComment(id, {
             user: nickname,
             body: this.state.body,
         }).then(() => this.getPosts())
+
             .catch(err => console.log(err))
-        console.log("handleReply() saveComments promise of getPosts() should have completed")
-        this.setState({ body: "" });
-        this.setState({ showComments: true })
-        this.setState({ loaded: true })
+
     }
     render() {
-        console.log("I am in render()");
+        console.log(this.state.selected)
         return (
             <div>
                 <NavBar />
@@ -103,7 +104,7 @@ class Community extends Component {
                         </div>}
                 </div>
                 {this.state.isFiltered &&
-                    this.state.fileteredPosts.map((post, i) => (
+                    this.state.posts.filter(filteredPost => filteredPost.category === this.state.selected).map((post, i) => (
                         <React.Fragment>
                             <ForumTemplate
                                 post={post}

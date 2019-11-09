@@ -87,10 +87,12 @@ module.exports = {
     createComment: function (req, res) {
         db.Comment.create(req.body)
             .then(function (dbComment) {
-                return db.Post.findByIdAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true });
-            })
-            .then(function (dbPost) {
-                res.json(dbPost);
+                db.Post.findByIdAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true })
+
+                    // })
+                    .then(function (dbPost) {
+                        res.json(dbPost);
+                    });
             })
             .catch(function (err) {
                 res.json(err);

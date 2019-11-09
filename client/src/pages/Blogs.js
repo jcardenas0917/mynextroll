@@ -13,6 +13,7 @@ class Blogs extends Component {
         journals: [{}],
         filteredJournals: [{}],
         isFiltered: false,
+        selected: ""
     }
     async componentDidMount() {
         const { user } = this.context;
@@ -26,19 +27,17 @@ class Blogs extends Component {
             .catch(err => console.log(err));
     }
     handleInputChange = event => {
-        this.setState({ filteredJournals: this.state.journals.filter(filteredJournal => filteredJournal.category === event.target.value) })
+        this.setState({ selected: event.target.value })
         this.setState({ isFiltered: true });
     }
     deleteEntry = id => {
         API.deleteJournal(id)
             .then(res => this.confirm()
-            )
+            ).then(() => this.componentDidMount())
             .catch(err => console.log(err))
     };
-
     confirm = () => {
         alert("Journal Deleted")
-        window.location.reload();
     };
     render() {
         return (
@@ -61,7 +60,7 @@ class Blogs extends Component {
                     <div className="col-8">
 
                         {this.state.isFiltered &&
-                            this.state.filteredJournals.map((filteredJournal, i) => (
+                            this.state.journals.filter(filteredJournal => filteredJournal.category === this.state.selected).map((filteredJournal, i) => (
                                 <Wrappper>
                                     <BlogResults
                                         filter={filteredJournal}
