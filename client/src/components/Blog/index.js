@@ -29,11 +29,11 @@ export function BlogResults(props) {
     );
 }
 
-export function JournalLink(props) {
+export function NewJournal(props) {
     return (
-        <div>
-            <a className="btn btn-light" href="/journal">New Entry</a>
-        </div>
+        <span className="edit-btn" {...props} role="button" tabIndex="0">
+            <button className="btn btn-light">New Entry</button>
+        </span>
 
     )
 }

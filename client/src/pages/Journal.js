@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
+import { Category, BlogResults, NewJournal } from "../components/Blog";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { BlogLink } from "../components/Link";
-import { JournalTitle, JournalBody, FormBtn } from "../components/CMS";
-import { Category } from "../components/Blog";
+import DeleteBtn from "../components/DeleteBtn";
+import EditBtn from "../components/EditBtn";
+import Wrappper from "../components/Wrapper";
+import { JournalTitle, JournalBody, FormBtn, CancelBtn } from "../components/CMS";
 
 const initialState = {
 
@@ -20,7 +22,7 @@ const initialState = {
 }
 
 
-class Journal extends Component {
+class Blogs extends Component {
     static contextType = Auth0Context;
     state = {
         user: "",
@@ -30,14 +32,34 @@ class Journal extends Component {
         titleError: "",
         bodyError: "",
         categoryError: "",
+        journals: [{}],
+        isFiltered: false,
+        selected: "",
+        showForm: false,
+        journalId: "",
+        singleJournal: {},
+        newEntry: false
     }
-    handleInputChange = event => {
+    async componentDidMount() {
+        const { user } = this.context;
+        API.getJournal(user.nickname)
+            .then(res =>
+                this.setState({
+                    journals: res.data
+                }),
+            )
+            .catch(err => console.log(err));
+    }
+
+    handleOnChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
-
+    handleOnSearch = event => {
+        this.setState({ selected: event.target.value, isFiltered: true });
+    }
     validate = () => {
         let titleError = "";
         let bodyError = "";
@@ -58,6 +80,26 @@ class Journal extends Component {
         }
         return true;
     }
+    deleteEntry = id => {
+        API.deleteJournal(id)
+            .then(() => alert("Journal Deleted")
+            ).then(() => this.componentDidMount())
+            .catch(err => console.log(err))
+    };
+    editEntry = () => {
+        this.setState({
+        });
+        const { user } = this.context;
+        let nickname = user.nickname;
+        let id = this.state.journalId;
+        API.updateJournal(id, {
+            user: nickname,
+            title: this.state.title,
+            body: this.state.body,
+            category: this.state.category
+        })
+        this.setRedirect()
+    }
     handleFormSubmit = event => {
         event.preventDefault();
         const isValid = this.validate()
@@ -72,60 +114,110 @@ class Journal extends Component {
             title: this.state.title,
             body: this.state.body,
             category: this.state.category
-        }).catch(err => console.log(err))
-        this.setRedirect();
+        }).then(alert("New Journal Entry"))
+            .catch(err => console.log(err))
     }
-    setRedirect = () => {
-        const isValid = this.validate()
-        if (isValid) {
-            console.log(this.state)
-            this.props.history.push('/blog');
-        }
+    onCancel = () => {
+        this.setState({ showForm: false });
+    }
+    showFrom = () => {
+        console.log("clicked")
+        this.setState({ showForm: true, newEntry: true, isFiltered: false });
+    }
+
+    getSingleJournal = (id) => {
+        this.setState({ showForm: true, journalId: id });
+        API.getJournalById(id)
+            .then(res => this.setState({ singleJournal: res.data }))
+            .then(() => this.setState({
+                title: this.state.singleJournal.title,
+                body: this.state.singleJournal.body,
+                category: this.state.singleJournal.category,
+            }))
+            .catch(err => console.log(err));
     }
     render() {
-
         return (
             <div>
                 <NavBar />
                 <Title>Journal</Title>
-                <BlogLink />
-                <form>
-                    <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-8">
-                            Title
+                <NewJournal onClick={this.showFrom} />
+                {this.state.showForm &&
+                    <form>
+                        <div className="row">
+                            <div className="col-2"></div>
+                            <div className="col-8">
+                                Title
                                 <JournalTitle
-                                value={this.state.title}
-                                onChange={this.handleInputChange}
-                                name="title"
-                                placeholder="Title (required)" />
-                            <div style={{ fontSize: 12, color: "red" }}>
-                                {this.state.titleError}</div>
-                            Body
+                                    value={this.state.title}
+                                    onChange={this.handleOnChange}
+                                    name="title" />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.titleError}</div>
+                                Body
                                 <JournalBody
-                                value={this.state.body}
-                                onChange={this.handleInputChange}
-                                name="body"
-                                placeholder="Journal Body (required)" />
-                            <div style={{ fontSize: 12, color: "red" }}>
-                                {this.state.bodyError}</div>
-                            Category
+                                    value={this.state.body}
+                                    onChange={this.handleOnChange}
+                                    name="body"
+                                />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.bodyError}</div>
+                                Category
                                 <Category
-                                value={this.state.selection}
-                                onChange={this.handleInputChange}
-                                name="category"
-                            />
-                            <div style={{ fontSize: 12, color: "red" }}>
-                                {this.state.categoryError}</div>
-                            <FormBtn
-                                onClick={this.handleFormSubmit} />
+                                    value={this.state.selection}
+                                    onChange={this.handleOnChange}
+                                    name="category"
+                                />
+                                <div style={{ fontSize: 12, color: "red" }}>
+                                    {this.state.categoryError}</div>
+                                <div className="row">
+                                    <div className="col-4"></div>
+                                    <div className="col-2">
+                                        <CancelBtn
+                                            onClick={this.onCancel} />
+                                    </div>
+                                    <div className="col-2">
+                                        <FormBtn
+                                            disabled={!(this.state.category && this.state.title && this.state.body)}
+                                            onClick={this.state.newEntry ? this.handleFormSubmit : this.editEntry} />
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+                    </form>}
+                <div className="row">
+                    <div className="col-4"></div>
+                    <div className="col-4">
+                        <Category
+                            value={this.state.selection}
+                            onChange={this.handleOnSearch}
+                            name="category"
+                        />
                     </div>
-                </form>
+                </div>
+                <div className="row">
+                    <div className="col-2"></div>
+                    <div className="col-8">
+
+                        {this.state.isFiltered &&
+                            this.state.journals.filter(filteredJournal => filteredJournal.category === this.state.selected).map((filteredJournal, i) => (
+                                <Wrappper>
+                                    <BlogResults
+                                        filter={filteredJournal}
+                                        key={i}
+                                    />
+                                    <DeleteBtn onClick={() => this.deleteEntry(filteredJournal._id)} />Delete
+                                    <EditBtn onClick={() => this.getSingleJournal(filteredJournal._id)} />Edit
+                                </Wrappper>
+                            ))}
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default Journal;
+
+export default Blogs;
 
