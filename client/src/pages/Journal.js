@@ -116,6 +116,7 @@ class Blogs extends Component {
             category: this.state.category
         }).then(alert("New Journal Entry"))
             .catch(err => console.log(err))
+        window.location.reload();
     }
     onCancel = () => {
         this.setState({ showForm: false, hideNewEntry: true });
