@@ -88,8 +88,6 @@ class Blogs extends Component {
             .catch(err => console.log(err))
     };
     editEntry = () => {
-        this.setState({
-        });
         const { user } = this.context;
         let nickname = user.nickname;
         let id = this.state.journalId;

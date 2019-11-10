@@ -109,7 +109,14 @@ export function ShowCommentsBtn(props) {
   );
 }
 
+export function NewTopic(props) {
+  return (
+    <span className="edit-btn" {...props} role="button" tabIndex="0">
+      <button className="btn btn-light">New Entry</button>
+    </span>
 
+  )
+}
 
 
 
