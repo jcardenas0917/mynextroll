@@ -149,7 +149,6 @@ class Community extends Component {
             <div>
                 <NavBar />
                 <Title>Community</Title>
-
                 <NewTopic onClick={this.showFrom} />
                 {this.state.showNewEntryForm &&
                     <form>
