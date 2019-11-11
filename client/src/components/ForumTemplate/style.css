@@ -16,21 +16,11 @@
 .newForum {
   border-style: double;
 }
-table,
-th,
-td {
-  border: 1px solid black;
-}
+
 .post {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-}
-
-.post td,
-.post th {
-  border: 1px solid #ddd;
-  padding: 8px;
 }
 
 .post tr:nth-child(even) {
