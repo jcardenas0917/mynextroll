@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "eslint": "^6.6.0",
     "nodemon": "^1.19.4"
   },
   "homepage": "https://github.com/jcardenas0917/mynextroll#readme",
