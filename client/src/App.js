@@ -35,7 +35,7 @@ const App = () => {
             <PrivateRoute exact path="/journal" component={Journal} />
             <PrivateRoute exact path="/community" component={Community} />
             <PrivateRoute exact path="/create" component={CreateProfile} />
-            <PrivateRoute exact path="/edit" component={EditProfile} />
+            <Route exact path="/edit" component={EditProfile} />
             <Route component={NoMatch} />
           </Switch>
         </Container>

@@ -10,8 +10,7 @@ import Cancel from "../components/CancelButton"
 class EditProfile extends Component {
     static contextType = Auth0Context;
     state = {
-        profile: {},
-        formValid: false
+        profile: {}
     }
     componentDidMount() {
         this.loadProfile();
