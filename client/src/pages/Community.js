@@ -3,8 +3,7 @@ import NavBar from "../components/NavBar";
 import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { ForumTemplate, Category, TextArea, ReplyBtn, Comments, ForumTitle, ForumBody, FormBtn, NewTopic } from '../components/ForumTemplate';
-import Paragraph from "../components/Paragraph";
+import { ForumTemplate, Category, TextArea, ReplyBtn, Comments, ForumTitle, ForumBody, FormBtn, NewTopic, Selection } from '../components/ForumTemplate';
 import { CancelBtn } from "../components/CMS"
 
 const initialState = {
@@ -43,6 +42,7 @@ class Community extends Component {
     }
 
     async componentDidMount() {
+
         await this.getPosts();
         this.setState({ loaded: true })
     }
@@ -144,7 +144,6 @@ class Community extends Component {
     };
 
     render() {
-        console.log(this.state.selected)
         return (
             <div>
                 <NavBar />
@@ -197,8 +196,7 @@ class Community extends Component {
                 {!this.state.showNewEntryForm &&
                     <div className="row">
                         <div className="col-4">
-                            <Paragraph>Seach by catergory</Paragraph>
-                            <Category
+                            <Selection
                                 value={this.state.selection}
                                 onChange={this.handleSearch}
                                 name="results" />

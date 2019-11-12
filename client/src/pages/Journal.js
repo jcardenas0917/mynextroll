@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
-import { Category, BlogResults, NewJournal } from "../components/Blog";
+import { Category, BlogResults, NewJournal, Selection } from "../components/Blog";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
@@ -163,7 +163,7 @@ class Blogs extends Component {
                                 <div style={{ fontSize: 12, color: "red" }}>
                                     {this.state.bodyError}</div>
                                 Category
-                                <Category
+                                <Selection
                                     value={this.state.selection}
                                     onChange={this.handleOnChange}
                                     name="category"

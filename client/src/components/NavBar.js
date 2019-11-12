@@ -62,7 +62,7 @@ const NavBar = () => {
                     className="btn-margin"
                     onClick={() => loginWithRedirect({})}
                   >
-                    Log in
+                    Sign Up or Log in
                   </Button>
                 </NavItem>
               )}

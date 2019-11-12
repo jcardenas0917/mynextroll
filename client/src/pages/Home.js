@@ -4,6 +4,7 @@ import { Auth0Context } from "../react-auth0-spa";
 import NavBar from "../components/NavBar";
 import API from "../utils/API";
 import Title from "../components/Title";
+import Paragraph from "../components/Paragraph"
 
 class Home extends Component {
   static contextType = Auth0Context;
@@ -33,7 +34,9 @@ class Home extends Component {
     return (
       <div>
         <NavBar />
-        <Title>Welcome</Title>
+        <Title>Welcome To My Next Roll!</Title>
+        <Paragraph>Please sign up or login to start your Jiu Jitsu Journal<br />
+          and be part of our awesome community!</Paragraph>
         <Background />
       </div>
     )

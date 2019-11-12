@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 function Paragraph(props) {
-  return <p className="message">{props.children}</p>;
+  return <h3 className="message">{props.children}</h3>;
 }
 
 export default Paragraph;

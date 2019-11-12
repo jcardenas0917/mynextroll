@@ -37,11 +37,6 @@ function ProfileTemplate(props) {
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="profile-work">
-
-                            <p>Favorite Submission</p>
-                            <p>{props.sub}</p>
-                        </div>
                     </div>
                     <div className="col-md-8">
                         <div className="tab-content profile-tab" id="myTabContent">
@@ -76,6 +71,14 @@ function ProfileTemplate(props) {
                                     </div>
                                     <div className="col-md-6">
                                         <p>{props.profession}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Favorite Submission</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{props.sub}</p>
                                     </div>
                                 </div>
                             </div>

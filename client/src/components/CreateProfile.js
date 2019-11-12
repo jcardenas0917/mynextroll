@@ -204,7 +204,8 @@ class CreateProfile extends Component {
                                     value={this.state.image}
                                     onChange={this.handleInputChange}
                                     name="image"
-                                    placeholder="Copy and Paste Image link" />
+                                    placeholder="Image Link (Optional) - Provide a URL to link a profile picture to your account.
+" />
                                 <FormBtn
                                     // disabled={!(this.state.name && this.state.belt && this.state.stripes && this.state.academy && this.state.city
                                     //     && this.state.instructor && this.state.sub && this.state.profession)}

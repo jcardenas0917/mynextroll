@@ -6,7 +6,20 @@ export function Category(props) {
     return (
         <div className="form-group">
             <select className="form-control" defaultValue={'DEFAULT'} {...props}>
-                <option value="DEFAULT" disabled>Select A Category</option>
+                <option value="DEFAULT" disabled>Sort By Category</option>
+                <option>Training</option>
+                <option>Technique</option>
+                <option>Personal</option>
+            </select>
+        </div>
+    )
+}
+
+export function Selection(props) {
+    return (
+        <div className="form-group">
+            <select className="form-control" defaultValue={'DEFAULT'} {...props}>
+                <option value="DEFAULT" disabled>Select a Category</option>
                 <option>Training</option>
                 <option>Technique</option>
                 <option>Personal</option>
