@@ -185,7 +185,7 @@ class Community extends Component {
                                     </div>
                                     <div className="col-2">
                                         <FormBtn
-                                            disabled={!(this.state.category && this.state.title && this.state.body)}
+
                                             onClick={this.handleFormSubmit} />
                                     </div>
                                 </div>
