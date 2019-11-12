@@ -13,7 +13,6 @@ class Home extends Component {
   }
   async componentDidMount() {
     const { user } = this.context;
-    console.log(user)
     // If logged into Auth0
     if (user) {
       // User Auth0 email to search your DB.  Load MyNextRoll profile
@@ -31,16 +30,18 @@ class Home extends Component {
     }
   }
   render() {
+    const { user } = this.context;
+    console.log(user)
     return (
       <div>
         <NavBar />
         <Title>Welcome To My Next Roll!</Title>
-        <Paragraph>Please sign up or login to start your Jiu Jitsu Journal<br />
-          and be part of our awesome community!</Paragraph>
+
+        {!user && <Paragraph>Please sign up or login to start your Jiu Jitsu Journal<br />
+          and be part of our awesome community!</Paragraph>}
         <Background />
       </div>
     )
   }
 }
-
 export default Home;
