@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const profileSchema = new Schema({
     email: { type: String, required: true },
+    nickname: { type: String, required: true },
     name: { type: String, required: true },
     belt: { type: String, required: true },
     stripes: { type: String, required: true },

@@ -14,6 +14,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
+    findOneByNickName: function (req, res) {
+        db.Profile
+            .findOne({ nickname: req.params.nickname })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+    },
     findById: function (req, res) {
         db.Profile
             .findById(req.params.id)

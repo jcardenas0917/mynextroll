@@ -16,4 +16,7 @@ router
 router.route("/email/:email")
     .get(userController.findOne)
     .put(userController.update)
+
+router.route("/nickname/:nickname")
+    .get(userController.findOneByNickName)
 module.exports = router;

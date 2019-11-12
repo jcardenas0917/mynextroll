@@ -103,9 +103,10 @@ class CreateProfile extends Component {
         }
         const { user } = this.context;
         let email = user.email;
-
+        let nickname = user.nickname
         API.saveProfile({
             email: email,
+            nickname:nickname,
             name: this.state.name,
             belt: this.state.belt,
             stripes: this.state.stripes,

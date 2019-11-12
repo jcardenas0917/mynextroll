@@ -99,14 +99,14 @@ export function Comments(props) {
             <th scope="row"></th>
             <td>{moment(props.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             <td>{props.body}</td>
-            <td>{props.user}</td>
+            <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.user)} >{props.user}</button></td>
           </tr>
         </tbody>
       </table>
-      <div className="comments"></div>
     </div>
   );
 }
+
 
 export function TextArea(props) {
   return (
@@ -114,13 +114,6 @@ export function TextArea(props) {
       <textarea className="form-control" rows="5"{...props} />
     </div>
   )
-}
-export function ShowCommentsBtn(props) {
-  return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">Show Comments
-          {props.children}
-    </button>
-  );
 }
 
 export function NewTopic(props) {
@@ -131,6 +124,16 @@ export function NewTopic(props) {
 
   )
 }
+
+export function Cancel(props) {
+  return (
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-secondary">Close
+          {props.children}
+    </button>
+  );
+}
+
+
 
 
 

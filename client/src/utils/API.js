@@ -9,6 +9,10 @@ export default {
     getProfile: function (email) {
         return axios.get("/api/profile/email/" + email);
     },
+    getProfileByNickName: function (nickname) {
+        console.log(nickname)
+        return axios.get("/api/profile/nickname/" + nickname);
+    },
     //Delete Profile not being used
     deleteProfile: function (email) {
         return axios.delete("/api/profile/email" + email);

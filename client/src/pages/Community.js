@@ -3,8 +3,10 @@ import NavBar from "../components/NavBar";
 import Title from "../components/Title";
 import { Auth0Context } from "../react-auth0-spa";
 import API from "../utils/API";
-import { ForumTemplate, Category, TextArea, ReplyBtn, Comments, ForumTitle, ForumBody, FormBtn, NewTopic, Selection } from '../components/ForumTemplate';
+import { ForumTemplate, Category, TextArea, ReplyBtn, Comments, ForumTitle, ForumBody, FormBtn, NewTopic, Selection, Cancel } from '../components/ForumTemplate';
 import { CancelBtn } from "../components/CMS"
+import ProfileTemplate from "../components/UserProfileTemplate"
+
 
 const initialState = {
 
@@ -16,12 +18,12 @@ const initialState = {
     bodyError: "",
     categoryError: "",
 
-
 }
 
 class Community extends Component {
     static contextType = Auth0Context;
     state = {
+        profile: {},
         user: "",
         body: "",
         title: "",
@@ -37,8 +39,8 @@ class Community extends Component {
         showComments: true,
         selected: "",
         newEntry: false,
-        showNewEntryForm: false
-
+        showNewEntryForm: false,
+        showModal: false,
     }
 
     async componentDidMount() {
@@ -142,12 +144,41 @@ class Community extends Component {
             showForm: false
         });
     };
+    openModal = async user => {
+        this.setState({ showModal: true })
+        console.log(user)
+        await API.getProfileByNickName(user)
+            .then(res =>
+                this.setState({ profile: res.data }))
+            .catch(err => console.log(err));
+        window.scrollTo(10, 10)
+    }
+    closeProfile = () => {
+        this.setState({ showModal: false })
+    }
 
     render() {
+        console.log(this.state.profile.name)
         return (
             <div>
                 <NavBar />
                 <Title>Community</Title>
+
+                {this.state.showModal &&
+                    <div>
+                        <Cancel onClick={this.closeProfile} />
+                        <ProfileTemplate name={this.state.profile.name}
+                            belt={this.state.profile.belt}
+                            stripes={this.state.profile.stripes}
+                            academy={this.state.profile.academy}
+                            city={this.state.profile.city}
+                            profession={this.state.profile.profession}
+                            sub={this.state.profile.sub}
+                            instructor={this.state.profile.instructor}
+                            image={this.state.profile.image} />
+
+                    </div>}
+
                 <NewTopic onClick={this.showFrom} />
                 {this.state.showNewEntryForm &&
                     <form>
@@ -216,6 +247,7 @@ class Community extends Component {
                                 onClick={this.onCancelReply} />
                         </div>
                     </div>}
+
                 {this.state.isFiltered &&
                     this.state.posts.filter(filteredPost => filteredPost.category === this.state.selected).map((post, i) => (
                         <React.Fragment>
@@ -231,11 +263,12 @@ class Community extends Component {
                                         body={userComment.body}
                                         createdAt={userComment.createdAt}
                                         key={i}
+                                        openModal={this.openModal}
                                     />
                                 ))}
+
                         </React.Fragment>
                     ))}
-
             </div>
         )
     }
