@@ -9,7 +9,6 @@ import ProfileTemplate from "../components/UserProfileTemplate"
 
 
 const initialState = {
-
     user: "",
     title: "",
     body: "",
@@ -17,7 +16,6 @@ const initialState = {
     titleError: "",
     bodyError: "",
     categoryError: "",
-
 }
 
 class Community extends Component {
@@ -113,7 +111,8 @@ class Community extends Component {
 
     }
     handleSearch = event => {
-        this.setState({ selected: event.target.value, isFiltered: true })
+        this.setState({ selected: event.target.value, isFiltered: true, showModal: false })
+
     }
     handleReply = async event => {
         event.preventDefault();
@@ -134,7 +133,7 @@ class Community extends Component {
             .catch(err => console.log(err));
     }
     onCancel = () => {
-        this.setState({ isFiltered: true });
+        this.setState({ showNewEntryForm: false });
     }
     showFrom = () => {
         this.setState({ showForm: false, showNewEntryForm: true, newEntry: true, isFiltered: false, title: "", body: "", category: "" });
