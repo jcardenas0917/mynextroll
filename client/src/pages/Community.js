@@ -254,6 +254,7 @@ class Community extends Component {
                                 post={post}
                                 key={i}
                                 clickComment={this.clickComment}
+                                openModal={this.openModal}
                             />
                             {this.state.showComments &&
                                 post.comment.map((userComment, i) => (

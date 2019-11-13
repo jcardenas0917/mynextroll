@@ -80,7 +80,7 @@ export function ForumTemplate(props) {
             <td><h4>{props.post.title}</h4><br />
               {props.post.body}
             </td>
-            <td>{props.post.user}</td>
+            <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.post.user)} >{props.post.user}</button></td>
             <td>{props.post.category}</td>
             <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
           </tr>
