@@ -30,8 +30,8 @@ npm i
 
 ## Information
 
-This application was created for Brazilian Jiu Jitsu practicioners
-to keep a training and personal journal, maintain a profile based on their journey and to connect with other practicioners to the community
+This application was created for Brazilian Jiu Jitsu practitioners
+to keep a training and personal journal, maintain a profile based on their journey and to connect with other practitioners to the community
 forum.
 
 ## Challenges
