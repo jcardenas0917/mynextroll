@@ -178,7 +178,6 @@ class Community extends Component {
 
                     </div>}
 
-                <NewTopic onClick={this.showFrom} />
                 {this.state.showNewEntryForm &&
                     <form>
                         <div className="row">
@@ -208,12 +207,12 @@ class Community extends Component {
                                 <div style={{ fontSize: 12, color: "red" }}>
                                     {this.state.categoryError}</div>
                                 <div className="row">
-                                    <div className="col-4"></div>
-                                    <div className="col-2">
+                                    <div className="col-2"></div>
+                                    <div className="col-4">
                                         <CancelBtn
                                             onClick={this.onCancel} />
                                     </div>
-                                    <div className="col-2">
+                                    <div className="col-4">
                                         <FormBtn
 
                                             onClick={this.handleFormSubmit} />
@@ -231,6 +230,9 @@ class Community extends Component {
                                 onChange={this.handleSearch}
                                 name="results" />
                         </div>
+                        <div className="col-4">
+                            <NewTopic onClick={this.showFrom} />
+                        </div>
                     </div>}
                 {this.state.showForm &&
                     <div className="row">
@@ -246,7 +248,6 @@ class Community extends Component {
                                 onClick={this.onCancelReply} />
                         </div>
                     </div>}
-
                 {this.state.isFiltered &&
                     this.state.posts.filter(filteredPost => filteredPost.category === this.state.selected).map((post, i) => (
                         <React.Fragment>

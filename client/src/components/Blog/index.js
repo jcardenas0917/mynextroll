@@ -45,7 +45,7 @@ export function BlogResults(props) {
 export function NewJournal(props) {
     return (
         <span className="edit-btn" {...props} role="button" tabIndex="0">
-            <button className="btn btn-light">New Entry</button>
+            <button className="btn btn-primary">New Entry</button>
         </span>
 
     )

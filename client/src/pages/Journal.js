@@ -139,9 +139,12 @@ class Blogs extends Component {
         return (
             <div>
                 <NavBar />
+
                 <Title>Journal</Title>
-                {this.state.hideNewEntry &&
-                    <NewJournal onClick={this.showFrom} />}
+                <div className="row">
+                    {this.state.hideNewEntry &&
+                        <NewJournal onClick={this.showFrom} />}
+                </div>
                 {this.state.showForm &&
                     <form>
                         <div className="row">
@@ -171,12 +174,12 @@ class Blogs extends Component {
                                 <div style={{ fontSize: 12, color: "red" }}>
                                     {this.state.categoryError}</div>
                                 <div className="row">
-                                    <div className="col-4"></div>
-                                    <div className="col-2">
+                                    <div className="col-2"></div>
+                                    <div className="col-4">
                                         <CancelBtn
                                             onClick={this.onCancel} />
                                     </div>
-                                    <div className="col-2">
+                                    <div className="col-4">
                                         <FormBtn
                                             disabled={!(this.state.category && this.state.title && this.state.body)}
                                             onClick={this.state.newEntry ? this.handleFormSubmit : this.editEntry} />

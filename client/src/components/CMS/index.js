@@ -38,14 +38,14 @@ export function Category(props) {
 }
 export function FormBtn(props) {
     return (
-        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">Submit
+        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary" id="submitJournal">Submit
             {props.children}
         </button>
     );
 }
 export function CancelBtn(props) {
     return (
-        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-secondary">Cancel
+        <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-secondary" id="cancelJournal">Cancel
             {props.children}
         </button>
     );

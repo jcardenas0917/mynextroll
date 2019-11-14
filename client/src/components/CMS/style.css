@@ -1,0 +1,14 @@
+/* @media screen and (max-width: 768px) {
+  #cancelJournal {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #cancelJournal {
+    margin-left: 20px;
+  }
+  #submitJournal {
+    margin-left: 20px;
+  }
+} */
