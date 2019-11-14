@@ -36,9 +36,9 @@ class Community extends Component {
         showForm: false,
         showComments: true,
         selected: "",
-        newEntry: false,
         showNewEntryForm: false,
         showModal: false,
+        newEntryButton: true
     }
 
     async componentDidMount() {
@@ -78,10 +78,8 @@ class Community extends Component {
         return true;
     }
     clickComment = forumId => {
-        this.setState({ showForm: true });
-        this.setState({ showComments: true });
         let id = forumId
-        this.setState({ forumId: id })
+        this.setState({ forumId: id, showForm: true, newEntryButton: false, showComments: true })
         window.scrollTo(0, 0)
     }
     handleFormSubmit = event => {
@@ -122,7 +120,8 @@ class Community extends Component {
             showForm: false,
             body: "",
             showComments: true,
-            showNewEntryForm: false
+            showNewEntryForm: false,
+            newEntryButton: false
         });
         let id = this.state.forumId
         await API.saveComment(id, {
@@ -136,11 +135,12 @@ class Community extends Component {
         this.setState({ showNewEntryForm: false });
     }
     showFrom = () => {
-        this.setState({ showForm: false, showNewEntryForm: true, newEntry: true, isFiltered: false, title: "", body: "", category: "" });
+        this.setState({ showForm: false, showNewEntryForm: true, isFiltered: false, title: "", body: "", category: "" });
     }
     onCancelReply = () => {
         this.setState({
-            showForm: false
+            showForm: false,
+            newEntryButton: true
         });
     };
     openModal = async user => {
@@ -157,7 +157,6 @@ class Community extends Component {
     }
 
     render() {
-        console.log(this.state.profile.name)
         return (
             <div>
                 <NavBar />
@@ -230,9 +229,10 @@ class Community extends Component {
                                 onChange={this.handleSearch}
                                 name="results" />
                         </div>
-                        <div className="col-4">
-                            <NewTopic onClick={this.showFrom} />
-                        </div>
+                        {this.state.newEntryButton &&
+                            <div className="col-4">
+                                <NewTopic onClick={this.showFrom} />
+                            </div>}
                     </div>}
                 {this.state.showForm &&
                     <div className="row">
