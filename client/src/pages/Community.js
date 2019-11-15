@@ -38,7 +38,8 @@ class Community extends Component {
         selected: "",
         showNewEntryForm: false,
         showModal: false,
-        newEntryButton: true
+        newEntryButton: true,
+        showSortSelection: true
     }
 
     async componentDidMount() {
@@ -79,7 +80,7 @@ class Community extends Component {
     }
     clickComment = forumId => {
         let id = forumId
-        this.setState({ forumId: id, showForm: true, newEntryButton: false, showComments: true })
+        this.setState({ forumId: id, showForm: true, newEntryButton: false, showComments: true, showSortSelection: false })
         window.scrollTo(0, 0)
     }
     handleFormSubmit = event => {
@@ -121,7 +122,8 @@ class Community extends Component {
             body: "",
             showComments: true,
             showNewEntryForm: false,
-            newEntryButton: false
+            newEntryButton: true,
+            showSortSelection: true
         });
         let id = this.state.forumId
         await API.saveComment(id, {
@@ -140,7 +142,8 @@ class Community extends Component {
     onCancelReply = () => {
         this.setState({
             showForm: false,
-            newEntryButton: true
+            newEntryButton: true,
+            showSortSelection: true
         });
     };
     openModal = async user => {
@@ -224,10 +227,11 @@ class Community extends Component {
                 {!this.state.showNewEntryForm &&
                     <div className="row">
                         <div className="col-4">
-                            <Selection
-                                value={this.state.selection}
-                                onChange={this.handleSearch}
-                                name="results" />
+                            {this.state.showSortSelection &&
+                                <Selection
+                                    value={this.state.selection}
+                                    onChange={this.handleSearch}
+                                    name="results" />}
                         </div>
                         {this.state.newEntryButton &&
                             <div className="col-4">

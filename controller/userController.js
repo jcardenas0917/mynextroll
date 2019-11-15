@@ -55,7 +55,7 @@ module.exports = {
 
     findOneJournal: function (req, res) {
         db.Journal
-            .find({ user: req.params.user })
+            .find({ user: req.params.user }).sort({ createdAt: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
@@ -99,7 +99,7 @@ module.exports = {
 
     showAllPosts: function (req, res) {
         db.Post
-            .find(req.query)
+            .find(req.query).sort({ createdAt: -1 })
             .populate("comment")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
