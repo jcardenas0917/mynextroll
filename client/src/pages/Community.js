@@ -97,8 +97,7 @@ class Community extends Component {
             title: this.state.title,
             body: this.state.body,
             category: this.state.category
-        }).then(() => alert("New Topic Added to Forum"))
-            .then(() => window.location.reload())
+        }).then(() => window.location.reload())
             .catch(err => console.log(err))
     }
 

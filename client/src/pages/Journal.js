@@ -83,8 +83,7 @@ class Blogs extends Component {
     }
     deleteEntry = id => {
         API.deleteJournal(id)
-            .then(() => alert("Journal Deleted")
-            ).then(() => this.componentDidMount())
+            .then(() => this.componentDidMount())
             .catch(err => console.log(err))
     };
     editEntry = () => {
@@ -112,8 +111,7 @@ class Blogs extends Component {
             title: this.state.title,
             body: this.state.body,
             category: this.state.category
-        }).then(alert("New Journal Entry"))
-            .catch(err => console.log(err))
+        }).catch(err => console.log(err))
         window.location.reload();
     }
     onCancel = () => {

@@ -72,39 +72,61 @@ export function ReplyBtn(props) {
 export function ForumTemplate(props) {
   return (
     <div>
-      <table className="table table-striped post">
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td>{moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
-            <td><h4>{props.post.title}</h4><br />
-              {props.post.body}
-            </td>
-            <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.post.user)} >{props.post.user}</button></td>
-            <td>{props.post.category}</td>
-            <td><i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i></td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="comments"></div>
+      <div className="row">
+        <div className="accordion post" id="accordionExample">
+          <div className="card">
+            <div className="card-header" id="headingOne">
+              <h2 className="mb-0">
+                {props.post.title}
+              </h2>
+              <div className="row">
+                <div className="col-4">
+                  {moment(props.post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                </div>
+                <div className="col-4">
+                  <i className="material-icons comment" onClick={() => props.clickComment(props.post._id)}>comment </i>
+                </div>
+                <div className="col-2">
+                  <h6 className="card-subtitle mb-2 text-muted"><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.post.user)} > {props.post.user}</button></h6>
+                </div>
+                <div className="col-2">
+                  <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Show Comments
+                </button>
+                </div>
+              </div>
+              <div className="row">
+                {props.post.body}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 export function Comments(props) {
   return (
-    <div>
-      <table className="table table-striped post results">
-        <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td>{moment(props.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
-            <td>{props.body}</td>
-            <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.user)} >{props.user}</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="container">
+      <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-5">
+              {props.body}
+            </div>
+            <div className="col-2">
+              {moment(props.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+            </div>
+            <div className="col-2">
+              <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => props.openModal(props.user)} >{props.user}</button>
+            </div>
+            <div className="col-2">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
 

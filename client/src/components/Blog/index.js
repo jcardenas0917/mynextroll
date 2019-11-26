@@ -30,15 +30,25 @@ export function Selection(props) {
 
 export function BlogResults(props) {
     return (
-
-        <div className="card">
-            <div className="card-body">
-                <h5 className="card-title">{props.filter.title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{props.filter.category}  {moment(props.filter.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h6>
-                <p className="card-text">{props.filter.body}</p>
+        <div>
+            <div className="accordion" id="accordionExample">
+                <div className="card">
+                    <div className="card-header" id="headingOne">
+                        <h2 className="mb-0">
+                            <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {props.filter.title}
+                            </button>
+                        </h2>
+                        <h6 className="card-subtitle mb-2 text-muted">{props.filter.category}  {moment(props.filter.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                    </div>
+                    <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div className="card-body">
+                            {props.filter.body}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     );
 }
 
