@@ -38,4 +38,4 @@ forum.
 Authentication was one of the biggest challenge on this app.  The app is still groing and will keep adding feautures and fixing bugs as they appear.
 
 ## APP
-[My Next Roll](https://secret-island-13693.herokuapp.com/)
+[My Next Roll](https://mynextroll.herokuapp.com/)
