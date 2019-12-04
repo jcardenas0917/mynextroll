@@ -109,8 +109,6 @@ module.exports = {
         db.Comment.create(req.body)
             .then(function (dbComment) {
                 db.Post.findByIdAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true })
-
-                    // })
                     .then(function (dbPost) {
                         res.json(dbPost);
                     });

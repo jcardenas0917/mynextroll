@@ -106,7 +106,7 @@ class CreateProfile extends Component {
         let nickname = user.nickname
         API.saveProfile({
             email: email,
-            nickname:nickname,
+            nickname: nickname,
             name: this.state.name,
             belt: this.state.belt,
             stripes: this.state.stripes,
@@ -205,11 +205,9 @@ class CreateProfile extends Component {
                                     value={this.state.image}
                                     onChange={this.handleInputChange}
                                     name="image"
-                                    placeholder="Image Link (Optional) - Provide a URL to link a profile picture to your account.
-" />
+                                    placeholder="Image Link (Optional) - Provide a URL to link a profile picture to your account." />
                                 <FormBtn
-                                    // disabled={!(this.state.name && this.state.belt && this.state.stripes && this.state.academy && this.state.city
-                                    //     && this.state.instructor && this.state.sub && this.state.profession)}
+
                                     onClick={this.handleFormSubmit} />
                             </Jumbotron>
                         </div>

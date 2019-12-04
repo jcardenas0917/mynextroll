@@ -33,7 +33,7 @@ class Community extends Component {
         fileteredPosts: [{}],
         isFiltered: false,
         forumId: "",
-        showForm: false,
+        showReplyForm: false,
         showComments: true,
         selected: "",
         showNewEntryForm: false,
@@ -80,7 +80,7 @@ class Community extends Component {
     }
     clickComment = forumId => {
         let id = forumId
-        this.setState({ forumId: id, showForm: true, newEntryButton: false, showComments: true, showSortSelection: false })
+        this.setState({ forumId: id, showReplyForm: true, newEntryButton: false, showComments: true, showSortSelection: false })
         window.scrollTo(0, 0)
     }
     handleFormSubmit = event => {
@@ -117,7 +117,7 @@ class Community extends Component {
         const { user } = this.context;
         let nickname = user.nickname
         this.setState({
-            showForm: false,
+            showReplyForm: false,
             body: "",
             showComments: true,
             showNewEntryForm: false,
@@ -140,7 +140,7 @@ class Community extends Component {
     }
     onCancelReply = () => {
         this.setState({
-            showForm: false,
+            showReplyForm: false,
             newEntryButton: true,
             showSortSelection: true
         });
@@ -237,7 +237,7 @@ class Community extends Component {
                                 <NewTopic onClick={this.showFrom} />
                             </div>}
                     </div>}
-                {this.state.showForm &&
+                {this.state.showReplyForm &&
                     <div className="row">
                         <div className="col-6">
                             <TextArea
@@ -246,7 +246,9 @@ class Community extends Component {
                                 name="body"
                                 placeholder="Reply Body (required)" />
 
-                            <ReplyBtn onClick={this.handleReply} />
+                            <ReplyBtn
+                                disabled={!(this.state.body)}
+                                onClick={this.handleReply} />
                             <CancelBtn
                                 onClick={this.onCancelReply} />
                         </div>
